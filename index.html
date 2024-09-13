@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayantan Chatterjee - System Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: var(--primary-color);
+            border: 5px solid #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-picture:hover {
+            transform: scale(1.05);
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1s forwards;
+        }
+        
+        header p {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+        
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        section {
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        
+        .project-grid, .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card, .skill-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover, .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-card h3, .skill-card h3 {
+            padding: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .skill-card {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .social-icons a {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .profile-picture {
+                width: 150px;
+                height: 150px;
+                font-size: 60px;
+            }
+        }
+
+        /* New styles for the achievements section */
+        #achievements {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+        }
+
+        .achievement-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .achievement-stack {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .achievement-card {
+            flex: 0 0 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .achievement-card:not(:first-child) {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .achievement-image {
+            max-width: 100%;
+            max-height: 70%;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .achievement-caption {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .achievement-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .achievement-nav button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .achievement-nav button:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-picture">
+                    <img src="Passport Photo.jpg" alt="Sayantan Chatterjee">
+                </div>
+            </div>
+            <h1>Sayantan Chatterjee</h1>
+            <p>System Engineer | Python Enthusiast | Creative Problem Solver</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>I am a B.Tech graduate specializing in Electronics and Communication Engineering. With a strong foundation in programming, particularly in Python and C, I excel at problem-solving and innovative thinking. My creative mindset allows me to approach challenges from unique perspectives, which I apply in both personal projects and professional work.</p>
+                <p>Beyond technology, I'm passionate about music and photography. Capturing moments through my lens and playing the guitar in my free time keeps me refreshed and inspired. I'm always looking for ways to combine my technical skills with creativity to create something unique and meaningful.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-python"></i>
+                        <h3>Python</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>Machine Learning</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-html5"></i>
+                        <h3>HTML</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt"></i>
+                        <h3>CSS</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-java"></i>
+                        <h3>Java</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-microchip"></i>
+                        <h3>Arduino</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-calculator"></i>
+                        <h3>MATLAB</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-code"></i>
+                        <h3>C</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <img src="/api/placeholder/400/320" alt="3D Cam Scanner">
+                        <h3>3D Cam Scanner</h3>
+                        <p>Using a camera and photogrammetry techniques to create 3D models of real objects.</p>
+                    </div>
+                    <div class="project-card">
+                        <img src="/api/placeholder/400/320" alt="UAV-based Oil Spill Mapping">
+                        <h3>Neuroevolution-based Reinforcement Learning for UAV Oil Spill Mapping</h3>
+                        <p>Using E-AES-CMA reinforcement learning techniques to train drones for automatic navigation to map oil spill areas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <div class="container">
+                <h2>Achievements</h2>
+                <div class="achievement-container">
+                    <div class="achievement-stack">
+                        <!-- Achievement cards will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div class="achievement-nav">
+                    <button id="prevAchievement">&larr; Previous</button>
+                    <button id="nextAchievement">Next &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <p>Feel free to reach out to me through any of the following platforms:</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/sayantan-chatterjee-4115a821a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Sayantan-Chatterjee-2619" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/sayantanchatterjee_2619?utm_source=qr&igsh=aXBiMjR1ZTU5NTE5" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:sayantan12000320031@gmail.com"><i class="far fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Sayantan Chatterjee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations for sections
+        const sections = document.querySelectorAll('section');
+        const backToTop = document.querySelector('.back-to-top');
+
+        function checkScroll() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // Back to top button functionality
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+         // Updated JavaScript for the achievements section
+        const achievementStack = document.querySelector('.achievement-stack');
+        const prevButton = document.getElementById('prevAchievement');
+        const nextButton = document.getElementById('nextAchievement');
+
+        const achievements = [
+            {
+                image: "/api/placeholder/400/320",
+                caption: "Python Certification",
+                description: "Completed advanced Python programming course with distinction."
+            },
+            {
+                image: "/api/placeholder/400/320",
+                caption: "Machine Learning Workshop",
+                description: "Participated in a two-day intensive workshop on machine learning algorithms."
+            },
+            {
+                image: "/api/placeholder/400/320",
+                caption: "Best Project Award",
+                description: "Received the Best Project Award for innovative solution in college tech fest."
+            }
+        ];
+
+        let currentAchievementIndex = 0;
+
+        function createAchievementCard(achievement) {
+            const card = document.createElement('div');
+            card.className = 'achievement-card';
+            card.innerHTML = `
+                <img src="${achievement.image}" alt="${achievement.caption}" class="achievement-image">
+                <p class="achievement-caption">${achievement.caption}</p>
+                <p>${achievement.description}</p>
+            `;
+            return card;
+        }
+
+        function initializeAchievements() {
+            achievements.forEach((achievement, index) => {
+                const card = createAchievementCard(achievement);
+                if (index !== 0) {
+                    card.style.transform = 'translateX(20px)';
+                    card.style.opacity = '0';
+                }
+                achievementStack.appendChild(card);
+            });
+        }
+
+        function showAchievement(index) {
+            const cards = achievementStack.children;
+            for (let i = 0; i < cards.length; i++) {
+                if (i === index) {
+                    cards[i].style.transform = 'translateX(0)';
+                    cards[i].style.opacity = '1';
+                } else {
+                    cards[i].style.transform = 'translateX(20px)';
+                    cards[i].style.opacity = '0';
+                }
+            }
+        }
+
+        function nextAchievement() {
+            currentAchievementIndex = (currentAchievementIndex + 1) % achievements.length;
+            showAchievement(currentAchievementIndex);
+        }
+
+        function prevAchievement() {
+            currentAchievementIndex = (currentAchievementIndex - 1 + achievements.length) % achievements.length;
+            showAchievement(currentAchievementIndex);
+        }
+
+        nextButton.addEventListener('click', nextAchievement);
+        prevButton.addEventListener('click', prevAchievement);
+
+        // Initialize the achievements
+        initializeAchievements();
+    </script>
+</body>
+</html>
