@@ -4,345 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sayantan Chatterjee - System Engineer</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #2c3e50;
-            --text-color: #333;
-            --bg-color: #f4f4f4;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-        
-        .profile-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .profile-picture {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            color: var(--primary-color);
-            border: 5px solid #ffffff;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        .profile-picture:hover {
-            transform: scale(1.05);
-        }
-        
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInDown 1s forwards;
-        }
-        
-        header p {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards 0.5s;
-        }
-        
-        @keyframes fadeInDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        nav {
-            background-color: var(--secondary-color);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav ul {
-            list-style-type: none;
-            display: flex;
-            justify-content: center;
-        }
-        
-        nav ul li {
-            margin: 0 15px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-        
-        section {
-            padding: 60px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: var(--secondary-color);
-        }
-        
-        .project-grid, .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card, .skill-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .project-card:hover, .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .project-card h3, .skill-card h3 {
-            padding: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .skill-card {
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .skill-card i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        
-        .social-icons a {
-            color: var(--secondary-color);
-            font-size: 2rem;
-            margin: 0 15px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            color: var(--primary-color);
-            transform: scale(1.1);
-        }
-        
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-        }
-        
-        .back-to-top:hover {
-            transform: scale(1.1);
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 10px 0;
-            }
-            
-            .profile-picture {
-                width: 150px;
-                height: 150px;
-                font-size: 60px;
-            }
-        }
-
-        /* New styles for the achievements section */
-        #achievements {
-            background-color: #f9f9f9;
-            padding: 60px 0;
-        }
-
-        .achievement-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .achievement-stack {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .achievement-card {
-            flex: 0 0 100%;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-
-        .achievement-card:not(:first-child) {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            transform: translateX(20px);
-        }
-
-        .achievement-image {
-            max-width: 100%;
-            max-height: 70%;
-            object-fit: contain;
-            margin-bottom: 20px;
-        }
-
-        .achievement-caption {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-        }
-
-        .achievement-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .achievement-nav button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .achievement-nav button:hover {
-            background-color: var(--secondary-color);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
 <body>
+    </div>
     <header>
         <div class="container">
+            <section id="home"></section>
             <div class="profile-container">
                 <div class="profile-picture">
                     <img src="Passport Photo.jpg" alt="Sayantan Chatterjee">
@@ -353,16 +22,23 @@
         </div>
     </header>
 
-    <nav>
-        <div class="container">
+    <div class="side-nav">
+        <nav>
             <ul>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#academic">Academics</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#internships">Internships</a></li>
+                <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </div>
+
+    <!-- Toggle button for side navigation -->
+    <button class="nav-toggle">☰</button>
 
     <main>
         <section id="about">
@@ -413,6 +89,61 @@
             </div>
         </section>
 
+        <section id="academic">
+            <div class="container">
+                <h2>Academic Background</h2>
+                <div class="academic-grid">
+        
+                    <!-- Card 1: B.Tech Degree -->
+                    <div class="academic-card-flip">
+                        <div class="academic-card-inner">
+                            <!-- Front of the Card -->
+                            <div class="academic-card academic-card-front">
+                                <img src="BCREClogo.png" alt="BCREC logo">
+                                <h3>B.Tech in Electronics and Communication Engineering</h3>
+                            </div>
+        
+                            <!-- Back of the Card -->
+                            <div class="academic-card academic-card-back">
+                                <h3>Details</h3>
+                                <ul>
+                                    <li><strong>Institute:</strong> Dr. B.C. Roy Engineer College, Durgapur</li>
+                                    <li><strong>Graduation Year:</strong> 2024</li>
+                                    <li><strong>CGPA:</strong> 8.89/10</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Card 2: High School -->
+                    <div class="academic-card-flip">
+                        <div class="academic-card-inner">
+                            <!-- Front of the Card -->
+                            <div class="academic-card academic-card-front">
+                                <img src="DAVlogo.png" alt="School logo">
+                                <h3>High School - Science Stream</h3>
+                            </div>
+        
+                            <!-- Back of the Card -->
+                            <div class="academic-card academic-card-back">
+                                <h3>Details</h3>
+                                <ul>
+                                    <li><strong>School:</strong> DAV Model School, Durgapur</li>
+                                    <li><strong>Year of Passing:</strong> 2020</li>
+                                    <li><strong>Percentage:</strong> 92.6%</li>
+                                    <li><strong>Subjects:</strong> Physics, Chemistry, Mathematics, Biology</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </section>
+        
+        
+        
+
         <section id="projects">
             <div class="container">
                 <h2>Projects</h2>
@@ -430,6 +161,28 @@
                 </div>
             </div>
         </section>
+
+        <section id="internships">
+            <div class="container">
+                <h2>Internships</h2>
+                <div class="internship-grid">
+                    <!-- Internship 1: Celebal Technologies -->
+                    <div class="internship-card">
+                        <img src="CT.png" alt="Celebal Technologies logo">
+                        <h3>Data Science Internship at Celebal Technologies</h3>
+                        <p>Worked on weather prediction models for specific regions and a toxic comment classification model using machine learning techniques.</p>
+                    </div>
+        
+                    <!-- Internship 2: The Durgapur Projects Limited -->
+                    <div class="internship-card">
+                        <img src="DPLlogo.png" alt="DPL logo">
+                        <h3>Vocational Training at The Durgapur Projects Limited</h3>
+                        <p>Trained in handling SCADA systems, focusing on the supervision and control of electricity generation units as an intern.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
 
         <section id="achievements">
             <div class="container">
@@ -470,122 +223,6 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Scroll animations for sections
-        const sections = document.querySelectorAll('section');
-        const backToTop = document.querySelector('.back-to-top');
-
-        function checkScroll() {
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-
-                if (sectionTop < windowHeight * 0.75) {
-                    section.classList.add('visible');
-                }
-            });
-
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        }
-
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
-
-        // Back to top button functionality
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-         // Updated JavaScript for the achievements section
-        const achievementStack = document.querySelector('.achievement-stack');
-        const prevButton = document.getElementById('prevAchievement');
-        const nextButton = document.getElementById('nextAchievement');
-
-        const achievements = [
-            {
-                image: "/api/placeholder/400/320",
-                caption: "Python Certification",
-                description: "Completed advanced Python programming course with distinction."
-            },
-            {
-                image: "/api/placeholder/400/320",
-                caption: "Machine Learning Workshop",
-                description: "Participated in a two-day intensive workshop on machine learning algorithms."
-            },
-            {
-                image: "/api/placeholder/400/320",
-                caption: "Best Project Award",
-                description: "Received the Best Project Award for innovative solution in college tech fest."
-            }
-        ];
-
-        let currentAchievementIndex = 0;
-
-        function createAchievementCard(achievement) {
-            const card = document.createElement('div');
-            card.className = 'achievement-card';
-            card.innerHTML = `
-                <img src="${achievement.image}" alt="${achievement.caption}" class="achievement-image">
-                <p class="achievement-caption">${achievement.caption}</p>
-                <p>${achievement.description}</p>
-            `;
-            return card;
-        }
-
-        function initializeAchievements() {
-            achievements.forEach((achievement, index) => {
-                const card = createAchievementCard(achievement);
-                if (index !== 0) {
-                    card.style.transform = 'translateX(20px)';
-                    card.style.opacity = '0';
-                }
-                achievementStack.appendChild(card);
-            });
-        }
-
-        function showAchievement(index) {
-            const cards = achievementStack.children;
-            for (let i = 0; i < cards.length; i++) {
-                if (i === index) {
-                    cards[i].style.transform = 'translateX(0)';
-                    cards[i].style.opacity = '1';
-                } else {
-                    cards[i].style.transform = 'translateX(20px)';
-                    cards[i].style.opacity = '0';
-                }
-            }
-        }
-
-        function nextAchievement() {
-            currentAchievementIndex = (currentAchievementIndex + 1) % achievements.length;
-            showAchievement(currentAchievementIndex);
-        }
-
-        function prevAchievement() {
-            currentAchievementIndex = (currentAchievementIndex - 1 + achievements.length) % achievements.length;
-            showAchievement(currentAchievementIndex);
-        }
-
-        nextButton.addEventListener('click', nextAchievement);
-        prevButton.addEventListener('click', prevAchievement);
-
-        // Initialize the achievements
-        initializeAchievements();
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
