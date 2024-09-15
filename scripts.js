@@ -9,15 +9,38 @@ document.querySelectorAll('.side-nav a').forEach(anchor => {
     });
 });
 
-// Toggle side navigation visibility
-const toggleButton = document.querySelector('.nav-toggle');
-const sideNav = document.querySelector('.side-nav');
-const body = document.body;
+function toggleNav() {
+    const sideNav = document.getElementById("sideNav");
+    if (sideNav.style.width === "250px") {
+        sideNav.style.width = "0";
+    } else {
+        sideNav.style.width = "250px";
+    }
+}
 
-toggleButton.addEventListener('click', function () {
-    sideNav.classList.toggle('open');
-    body.classList.toggle('nav-open');
-});
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }    
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
 
 
 
@@ -58,19 +81,19 @@ const nextButton = document.getElementById('nextAchievement');
 
 const achievements = [
     {
-        image: "/api/placeholder/400/320",
-        caption: "Python Certification",
-        description: "Completed advanced Python programming course with distinction."
+        image: "SIH Certificate.jpg",
+        caption: "SIH 2023 Certification",
+        description: "Smart India Hackathon 2023 grand finalist participation certificate."
     },
     {
-        image: "/api/placeholder/400/320",
-        caption: "Machine Learning Workshop",
-        description: "Participated in a two-day intensive workshop on machine learning algorithms."
+        image: "AICTE robotics wrkshop.jpg",
+        caption: "AICTE robotics Workshop",
+        description: "Participated in a two-day intensive workshop on voice controlled robot."
     },
     {
-        image: "/api/placeholder/400/320",
-        caption: "Best Project Award",
-        description: "Received the Best Project Award for innovative solution in college tech fest."
+        image: "Aradhana certificate.jpg",
+        caption: "Winning Award",
+        description: "Received the Winning Award at Science Exbibition organised by Health Education & Cultural Fair Science Exbibition, Sail Abasan Ground, Kabiguru 2nd, City Centre, Durgapur-16, from 19th January to 22nd January 2023."
     }
 ];
 
@@ -128,7 +151,35 @@ prevButton.addEventListener('click', prevAchievement);
 initializeAchievements();
 
 document.querySelectorAll('.academic-card-flip').forEach(card => {
-    card.addEventListener('click', () => {
+    // Function to toggle flip
+    const toggleFlip = () => {
         card.querySelector('.academic-card-inner').classList.toggle('is-flipped');
+    };
+
+    // Event listener for desktop (click event)
+    card.addEventListener('click', toggleFlip);
+
+    // Event listener for mobile (touchstart event)
+    card.addEventListener('touchstart', toggleFlip);
+});
+
+
+document.querySelectorAll('.peek-certificate').forEach(button => {
+    button.addEventListener('mouseenter', () => {
+        button.closest('.internship-card').classList.add('peeking');
+    });
+
+    button.addEventListener('mouseleave', () => {
+        button.closest('.internship-card').classList.remove('peeking');
+    });
+
+    button.addEventListener('click', () => {
+        button.closest('.internship-card').classList.add('flipped');
+    });
+});
+
+document.querySelectorAll('.close-certificate').forEach(button => {
+    button.addEventListener('click', () => {
+        button.closest('.internship-card').classList.remove('flipped');
     });
 });

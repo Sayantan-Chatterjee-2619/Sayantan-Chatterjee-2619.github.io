@@ -94,70 +94,214 @@
             }
         } 
         
-        /* Side navigation */
-.side-nav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100%;
-    background-color: var(--secondary-color);
-    padding: 20px;
-    z-index: 1000; /* Keep it above other elements */
-    transition: transform 0.3s ease; /* For smooth open/close transitions */
-    transform: translateX(-100%); /* Initially hidden off-screen */
-}
+        .side-nav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        
+        .side-nav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .side-nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        .side-nav .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            border: none;
+            background: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        .nav-toggle {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        @media screen and (max-height: 450px) {
+            .side-nav {padding-top: 15px;}
+            .side-nav a {font-size: 18px;}
+        }
 
-.side-nav.open {
-    transform: translateX(0); /* Open the side panel */
-}
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #004798;
+            --secondary-color: #6182a4;
+            --text-color: #bcbcbc;
+            --bg-color: #000000;
+        }
+        
+        [data-theme="dark"] .academic-card,
+        [data-theme="dark"] .project-card,
+        [data-theme="dark"] .internship-card,
+        [data-theme="dark"] .skill-card,
+        [data-theme="dark"] .achievement-card {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        [data-theme="dark"] .academic-card h3,
+        [data-theme="dark"] .project-card h3,
+        [data-theme="dark"] .internship-card h3,
+        [data-theme="dark"] .skill-card h3 {
+            color: #000000;
+        }
+        
+        [data-theme="dark"] .academic-card p,
+        [data-theme="dark"] .project-card p,
+        [data-theme="dark"] .internship-card p,
+        [data-theme="dark"] .skill-card p {
+            color: #000000;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+        
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+        
+        .theme-switch input {
+            display: none;
+        }
+        
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .slider.round {
+            border-radius: 34px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        
+        /* Sun and Moon Icon Styling */
+        .slider i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
 
-.side-nav ul {
-    list-style-type: none;
-    padding: 0;
+        /* Style the sun and moon icons */
+.theme-switch-wrapper .fa-sun, 
+.theme-switch-wrapper .fa-moon {
+    margin-left: -30px;
+    margin-top: 5px;
+    font-size: 1.5rem;
+    color: #ccc; /* Default color */
+    transition: color 0.3s ease;
 }
-
-.side-nav ul li {
-    margin: 20px 0;
-}
-
-.side-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    display: block;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.side-nav ul li a:hover {
-    background-color: var(--primary-color);
-}
-
-.nav-toggle {
-    position: fixed;
-    top: 10px;
-    left: 20px;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 5px;
-    border: none;
-    cursor: pointer;
-    z-index: 1100; /* Above side-nav */
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.nav-toggle:hover {
-    background-color: var(--secondary-color);
-}
-
-/* Adjust the main content to accommodate the side nav */
-body.nav-open {
-    margin-left: 250px; /* Adjust the margin when nav is open */
-    transition: margin-left 0.3s ease;
-}
+        
+        .slider .fa-sun {
+            left: 8px;
+            color: #ffcc00; /* Sun icon color */
+            box-shadow: 0px 0px 30px rgb(255, 179, 0);
+        }
+        
+        .slider .fa-moon {
+            right: 8px;
+            color: #ffffff9d; /* Moon icon color */
+            box-shadow: 0px 0px 40px rgb(255, 255, 255)
+        }
+        
+        input:checked + .slider .fa-sun {
+            opacity: 0;
+        }
+        
+        input:checked + .slider .fa-moon {
+            opacity: 1;
+        }
+        
+        input:not(:checked) + .slider .fa-sun {
+            opacity: 1;
+        }
+        
+        input:not(:checked) + .slider .fa-moon {
+            opacity: 0;
+        }
+        
 
         
         
@@ -294,7 +438,7 @@ body.nav-open {
 
         /* New styles for the achievements section */
         #achievements {
-            background-color: #f9f9f9;
+            background-color: var(--bg-color);
             padding: 60px 0;
         }
 
@@ -336,17 +480,18 @@ body.nav-open {
             transform: translateX(20px);
         }
 
+        /* Image styles */
         .achievement-image {
-            max-width: 100%;
-            max-height: 70%;
-            object-fit: contain;
-            margin-bottom: 20px;
+            max-width: 100%; /* Use full available width */
+            max-height: 250px; /* Limits height */
+            object-fit: contain; /* Ensures proper scaling without distortion */
+         margin-bottom: 20px;
         }
 
         .achievement-caption {
             text-align: center;
             font-size: 1.2rem;
-            color: var(--secondary-color);
+            color: black;
         }
 
         .achievement-nav {
@@ -369,6 +514,27 @@ body.nav-open {
         .achievement-nav button:hover {
             background-color: var(--secondary-color);
         }
+
+        /* Responsive Styles */
+@media (max-width: 768px) {
+    .achievement-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .achievement-card {
+        padding: 15px;
+    }
+
+    .achievement-image {
+        max-width: 90%; /* Slightly smaller for mobile */
+        max-height: 200px; /* Adjust height for smaller screens */
+    }
+
+    .achievement-caption {
+        font-size: 1rem; /* Slightly smaller font size for mobile */
+    }
+}
 
 /* Academic Grid: Creates a grid layout for the cards */
 .academic-grid {
@@ -440,7 +606,7 @@ body.nav-open {
     position: relative;
 }
 
-/* Diluted institution image on the back */
+/* Common styles for both cards */
 .academic-card-back::before {
     content: '';
     position: absolute;
@@ -448,11 +614,26 @@ body.nav-open {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('institution-image.jpg'); /* Replace with your image URL */
     background-size: cover;
     background-position: center;
-    opacity: 0.5; /* This controls the dilution level */
+    opacity: 0.3; /* Adjusted for better readability, you can change this value */
     z-index: 0;
+}
+
+/* Specific styles for BCREC card */
+.bcrec-card .academic-card-back::before {
+    background-image: url('bcrec.jpeg');
+}
+
+/* Specific styles for DAV card */
+.dav-card .academic-card-back::before {
+    background-image: url('dav.jpeg');
+}
+
+/* Ensure the content is above the background image */
+.academic-card-back * {
+    position: relative;
+    z-index: 1;
 }
 
 /* Flip effect on hover */
@@ -492,43 +673,119 @@ body.nav-open {
         .academic-card-inner.is-flipped {
             transform: rotateY(180deg);
         }
+
+        .internship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
         
-/* Internship Grid */
-.internship-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    align-items: stretch;
-}
-
-/* Internship card styling */
-.internship-card {
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s;
-    width: 100%;
-    max-width: 350px;
-}
-
+        .internship-card-container {
+            perspective: 1000px;
+            width: 100%;
+            height: 450px; /* Increased height */
+            
+        }
+        
+        .internship-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .internship-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .internship-card-front, .internship-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .internship-card-front img {
+            max-width: 30%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .internship-card-front h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .internship-card-front p {
+            font-size: 0.9rem;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .internship-card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center the certificate */
+            padding: 20px;
+        }
+        
+        .certificate {
+            width: 90%; /* Take up full width */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: contain; /* Ensure it fits well within the card */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        
+        .peek-certificate, .close-certificate {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .internship-card.peeking .internship-card-inner {
+            transform: rotateY(15deg); /* Reduced angle for subtle peek */
+        }
+        
+        .internship-card.flipped .internship-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .internship-card-container {
+                height: 500px; /* Slightly taller on mobile */
+            }
+        }
+        
 /* Hover effect for internship card */
 .internship-card:hover {
     transform: translateY(-10px);
 }
 
-/* Internship logo styling */
-.internship-card img {
-    width: 80px;  /* Adjust the size of the logo */
-    height: 80px;
-    object-fit: contain;  /* Ensures that the logo maintains its aspect ratio */
-    margin-bottom: 15px;  /* Space between the logo and the heading */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 /* Internship card heading */
 .internship-card h3 {
@@ -545,8 +802,11 @@ body.nav-open {
     margin: 0;
 }
 
+
+
 #academic, #internships {
     margin: 40px 0;
     padding: 40px 20px;
     border-radius: 8px;
 }
+
