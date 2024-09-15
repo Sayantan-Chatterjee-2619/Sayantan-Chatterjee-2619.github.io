@@ -133,7 +133,7 @@
         }
         
         .nav-toggle {
-            font-size: 30px;
+            font-size: 15px;
             cursor: pointer;
             position: fixed;
             top: 10px;
@@ -205,9 +205,9 @@
         
         .theme-switch {
             display: inline-block;
-            height: 34px;
+            height: 17px;
             position: relative;
-            width: 60px;
+            width: 30px;
         }
         
         .theme-switch input {
@@ -227,13 +227,13 @@
         
         .slider:before {
             background-color: #fff;
-            bottom: 4px;
+            bottom: 2px;
             content: "";
-            height: 26px;
-            left: 4px;
+            height: 13px;
+            left: 2px;
             position: absolute;
             transition: .4s;
-            width: 26px;
+            width: 13px;
         }
         
         input:checked + .slider {
@@ -241,24 +241,24 @@
         }
         
         input:checked + .slider:before {
-            transform: translateX(26px);
+            transform: translateX(13px);
         }
         
         .slider.round {
-            border-radius: 34px;
+            border-radius: 17px;
         }
         
         .slider.round:before {
-            border-radius: 50%;
+            border-radius: 25%;
         }
         
         /* Sun and Moon Icon Styling */
         .slider i {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
+            top: 25%;
+            transform: translateY(-25%);
+            width: 10px;
+            height: 10px;
             color: #fff;
             opacity: 0;
             transition: opacity 0.3s;
@@ -267,9 +267,9 @@
         /* Style the sun and moon icons */
 .theme-switch-wrapper .fa-sun, 
 .theme-switch-wrapper .fa-moon {
-    margin-left: -30px;
-    margin-top: 5px;
-    font-size: 1.5rem;
+    margin-left: -20px;
+    margin-bottom: 10px;
+    font-size: 1.0rem;
     color: #ccc; /* Default color */
     transition: color 0.3s ease;
 }
