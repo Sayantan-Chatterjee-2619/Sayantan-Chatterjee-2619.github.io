@@ -164,22 +164,18 @@ document.querySelectorAll('.academic-card-flip').forEach(card => {
 });
 
 
-document.querySelectorAll('.peek-certificate').forEach(button => {
-    button.addEventListener('mouseenter', () => {
-        button.closest('.internship-card').classList.add('peeking');
-    });
+const peelButtons = document.querySelectorAll('.peel-certificate');
+const closeButtons = document.querySelectorAll('.close-certificate');
+const cards = document.querySelectorAll('.internship-card');
 
-    button.addEventListener('mouseleave', () => {
-        button.closest('.internship-card').classList.remove('peeking');
-    });
-
+peelButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
-        button.closest('.internship-card').classList.add('flipped');
+        cards[index].classList.add('curling');
     });
 });
 
-document.querySelectorAll('.close-certificate').forEach(button => {
+closeButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
-        button.closest('.internship-card').classList.remove('flipped');
+        cards[index].classList.remove('curling');
     });
 });
