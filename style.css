@@ -785,7 +785,7 @@
         }
         
         .internship-card.curling .internship-card-front {
-            transform: rotate(-60deg) translate(0);
+            transform: rotate(-90deg) translate(0);
             opacity: 0.5;
         }
         
