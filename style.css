@@ -771,7 +771,7 @@
         
         /* Page curl effect styles */
         .internship-card-front {
-            transform-origin: bottom right;
+            transform-origin: top right;
             transition: transform 1s ease, opacity 1s ease;
             z-index: 2;
         }
@@ -785,8 +785,9 @@
         }
         
         .internship-card.curling .internship-card-front {
-            transform: rotate(-90deg) translate(0);
-            opacity: 0.5;
+            transform: rotate(-70deg) translate(0);
+            opacity: 0.2;
+                
         }
         
         .internship-card.curling .internship-card-back {
@@ -809,6 +810,11 @@
             pointer-events: none;
             z-index: 3;
         }
+
+        .internship-card.curling .internship-card-front::after {
+            opacity: 1;
+            animation: swinging 3s ease-in-out infinite ;
+        }
         
         .internship-card.curling::after {
             opacity: 1;
@@ -818,6 +824,25 @@
         .internship-card:hover {
             transform: translateY(-10px);
         }
+
+        @keyframes swinging
+        {
+            0%
+            {
+                transform : rotate(-60deg);
+
+            }
+            50%
+            {
+                transform : rotate(-70deg);
+            }
+            100%
+            {
+                transform : rotate(-60deg);
+            }
+
+        }
+
         
         @media (max-width: 768px) {
             .internship-card-container {
