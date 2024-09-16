@@ -11,12 +11,15 @@ document.querySelectorAll('.side-nav a').forEach(anchor => {
 
 function toggleNav() {
     const sideNav = document.getElementById("sideNav");
-    if (sideNav.style.width === "250px") {
-        sideNav.style.width = "0";
+    
+    // If the sideNav's width is currently non-zero, collapse it. Otherwise, expand it.
+    if (sideNav.style.width === "30vw") {
+        sideNav.style.width = "0"; // Close navigation
     } else {
-        sideNav.style.width = "250px";
+        sideNav.style.width = "30vw"; // Open navigation
     }
 }
+
 
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
@@ -93,7 +96,7 @@ const achievements = [
     {
         image: "Aradhana certificate.jpg",
         caption: "Winning Award",
-        description: "Received the Winning Award at Science Exbibition organised by Health Education & Cultural Fair Science Exbibition, Sail Abasan Ground, Kabiguru 2nd, City Centre, Durgapur-16, from 19th January to 22nd January 2023."
+        description: "Received the Winning Award at Health Education & Cultural Fair Science Exbibition, organised at Sail Abasan Ground, Kabiguru 2nd, City Centre, Durgapur-16, from 19th January to 22nd January 2023."
     }
 ];
 
@@ -164,18 +167,23 @@ document.querySelectorAll('.academic-card-flip').forEach(card => {
 });
 
 
-const peelButtons = document.querySelectorAll('.peel-certificate');
-const closeButtons = document.querySelectorAll('.close-certificate');
-const cards = document.querySelectorAll('.internship-card');
-
-peelButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        cards[index].classList.add('curling');
-    });
-});
-
-closeButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        cards[index].classList.remove('curling');
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.internship-card');
+    
+    cards.forEach(card => {
+        const viewCertificateBtn = card.querySelector('.peel-certificate');
+        const closeCertificateBtn = card.querySelector('.close-certificate');
+        
+        viewCertificateBtn.addEventListener('click', function() {
+            card.classList.add('animating');
+            setTimeout(() => {
+                card.classList.remove('animating');
+                card.classList.add('revealed');
+            }, 2000); // Duration of the swingingAndPeeling animation
+        });
+        
+        closeCertificateBtn.addEventListener('click', function() {
+            card.classList.remove('revealed');
+        });
     });
 });

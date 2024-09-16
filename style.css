@@ -37,7 +37,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 45px;
         }
 
         .profile-picture img {
@@ -63,7 +63,7 @@
         }
         
         .profile-picture:hover {
-            transform: scale(1.05);
+            transform: scale(1.5);
         }
         
         header h1 {
@@ -96,21 +96,21 @@
         
         .side-nav {
             height: 100%;
-            width: 0;
+            width: 0; /* Start with closed state */
             position: fixed;
             z-index: 1;
             top: 0;
             left: 0;
             background-color: var(--secondary-color);
             overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
+            transition: width 0.3s ease; /* Smooth transition for width */
+            padding-top: 12vh;
         }
         
         .side-nav a {
-            padding: 8px 8px 8px 32px;
+            padding: 4vh 2vw 4vh 2vw;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 2vw;
             color: #fff;
             display: block;
             transition: 0.3s;
@@ -120,36 +120,55 @@
             color: var(--primary-color);
         }
         
-        .side-nav .close-btn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-            border: none;
-            background: none;
-            color: #fff;
-            cursor: pointer;
-        }
-        
         .nav-toggle {
-            font-size: 15px;
+            font-size: 3vw;
             cursor: pointer;
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 1vh;
+            left: 1vw;
             z-index: 2;
             background: var(--primary-color);
             color: #fff;
             border: none;
-            padding: 5px 10px;
+            padding: 1vh 2vw;
             border-radius: 5px;
         }
         
-        @media screen and (max-height: 450px) {
-            .side-nav {padding-top: 15px;}
-            .side-nav a {font-size: 18px;}
+        
+        /* Adjustments for smaller screen heights */
+        @media screen and (max-height: 611px) {
+            .side-nav { padding-top: 8vh; }
+            .side-nav a { font-size: 3vw; max-width: 80vw; } /* Keep size dynamic */
+            .side-nav a {padding: 2vh 2vw 2vh 2vw;}
         }
+
+        @media screen and (max-width: 500px){
+            .side-nav{padding-top: 1vh;}
+            .side-nav a{font-size: 10vw;}
+            .side-nav a{padding: 1vh 2vw 1vh 2vw;}
+        }
+
+        @media screen and (max-width: 380px){
+            .side-nav{padding-top: 1vh;}
+            .side-nav a{font-size: 12vw;}
+            .side-nav a{padding: 1vh 2vw 1vh 2vw;}
+        }
+        
+        
+        /* Further adjustments for smaller screens */
+        @media screen and (max-width: 320px) {
+            .side-nav { padding-top: 5vh; }
+            .side-nav a { font-size: 12vw; } /* Increase size slightly for small screens */
+            .side-nav a {padding: 2vh 2vw 2vh 2vw;}
+        }
+
+        @media screen and (max-width: 800px){
+            .side-nav{padding-top: 8vh;}
+            .side-nav a{font-size: 2vw;}
+            .side-nav a{padding: 2vh 2vw 2vh 2vw;}
+        }
+
+        
 
         :root {
             --primary-color: #4a90e2;
@@ -268,7 +287,7 @@
 .theme-switch-wrapper .fa-sun, 
 .theme-switch-wrapper .fa-moon {
     margin-left: -20px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 1.0rem;
     color: #ccc; /* Default color */
     transition: color 0.3s ease;
@@ -436,105 +455,123 @@
             }
         }
 
-        /* New styles for the achievements section */
-        #achievements {
-            background-color: var(--bg-color);
-            padding: 60px 0;
-        }
+        /* Achievement Section Optimization */
+#achievements {
+    padding: 4rem 1rem;
+}
 
-        .achievement-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
+.achievement-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    min-height: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
-        .achievement-stack {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            transition: transform 0.5s ease;
-        }
+.achievement-stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s ease;
+}
 
-        .achievement-card {
-            flex: 0 0 100%;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
+.achievement-card {
+    flex: 0 50% 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
 
-        .achievement-card:not(:first-child) {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            transform: translateX(20px);
-        }
+.achievement-card:not(:first-child) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transform: translateX(20px);
+}
 
-        /* Image styles */
-        .achievement-image {
-            max-width: 100%; /* Use full available width */
-            max-height: 250px; /* Limits height */
-            object-fit: contain; /* Ensures proper scaling without distortion */
-         margin-bottom: 20px;
-        }
+.achievement-image {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
 
-        .achievement-caption {
-            text-align: center;
-            font-size: 1.2rem;
-            color: black;
-        }
+.achievement-caption {
+    text-align: center;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: black;
+}
 
-        .achievement-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+.achievement-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
 
-        .achievement-nav button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.achievement-nav button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
 
-        .achievement-nav button:hover {
-            background-color: var(--secondary-color);
-        }
+.achievement-nav button:hover {
+    background-color: var(--secondary-color);
+}
 
-        /* Responsive Styles */
-@media (max-width: 768px) {
+/* Media queries for achievement section */
+@media screen and (max-width: 768px) {
     .achievement-container {
-        max-width: 100%;
-        padding: 0 15px;
-    }
-
-    .achievement-card {
-        padding: 15px;
+        min-height: 350px;
     }
 
     .achievement-image {
-        max-width: 90%; /* Slightly smaller for mobile */
-        max-height: 200px; /* Adjust height for smaller screens */
+        max-height: 200px;
     }
 
     .achievement-caption {
-        font-size: 1rem; /* Slightly smaller font size for mobile */
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    .achievement-nav button {
+        padding: 0.4rem 0.8rem;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .achievement-container {
+        min-height: 300px;
+    }
+
+    .achievement-image {
+        max-height: 150px;
+    }
+
+    .achievement-caption {
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+    }
+
+    .achievement-nav button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
 
 /* Academic Grid: Creates a grid layout for the cards */
 .academic-grid {
@@ -770,28 +807,46 @@
         }
         
         /* Page curl effect styles */
+        @keyframes swingingAndPeeling {
+            0% { transform: rotate(-3deg); }
+            25% { transform: rotate(3deg); }
+            50% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+            100% { transform: rotate(-70deg) translate(0); opacity: 0.2; }
+        }
+        
         .internship-card-front {
             transform-origin: top right;
             transition: transform 1s ease, opacity 1s ease;
             z-index: 2;
         }
         
-        
         .internship-card-back {
             transform: rotate(0deg) translate(0);
-            transition: transform 1s ease, opacity 1s ease;
+            transition: opacity 1s ease;
             z-index: 1;
             opacity: 0;
         }
         
-        .internship-card.curling .internship-card-front {
-            transform: rotate(-70deg) translate(0);
-            opacity: 0.2;
-                
+        .internship-card.animating .internship-card-front {
+            animation: swingingAndPeeling 2s ease-in-out forwards;
         }
         
-        .internship-card.curling .internship-card-back {
-            transform: rotate(0deg) translate(0, 0);
+        .internship-card.animating .internship-card-back {
+            animation: fadeIn 1s ease-in-out 1s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .internship-card.revealed .internship-card-front {
+            transform: rotate(-70deg) translate(0);
+            opacity: 0.2;
+        }
+        
+        .internship-card.revealed .internship-card-back {
             opacity: 1;
             display: flex;
         }
@@ -813,7 +868,7 @@
 
         .internship-card.curling .internship-card-front::after {
             opacity: 1;
-            animation: swinging 3s ease-in-out infinite ;
+            
         }
         
         .internship-card.curling::after {
@@ -825,22 +880,10 @@
             transform: translateY(-10px);
         }
 
-        @keyframes swinging
-        {
-            0%
-            {
-                transform : rotate(-60deg);
-
+        @media (max-width: 320px) {
+            .internship-card-container {
+                height: 100px;
             }
-            50%
-            {
-                transform : rotate(-70deg);
-            }
-            100%
-            {
-                transform : rotate(-60deg);
-            }
-
         }
 
         
@@ -878,4 +921,142 @@
     margin: 40px 0;
     padding: 40px 20px;
     border-radius: 8px;
+}
+
+
+
+/* Global styles for flexibility */
+html {
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-size: 1rem; /* Use relative font sizing */
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Use relative padding */
+}
+
+/* Responsive typography */
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+p {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Flexible grid system */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Card styles */
+.card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Flexible spacing */
+section {
+    padding: 4rem 1rem;
+}
+
+/* Media queries for different screen sizes */
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px; /* Slightly smaller base font size for mobile */
+    }
+
+    .grid {
+        grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    }
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+    }
+
+    .internship-card-container {
+        height: auto; /* Allow height to adjust based on content */
+        width: fit-content;
+        min-height: 400px;
+        min-width: 250px;
+    }
+
+    .achievement-container {
+        height: fit-content;
+        width: fit-content;
+        min-height: 400px;
+        min-width: 100px;    
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+
+
+/* Accessibility improvements */
+:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling for a better user experience */
+html {
+    scroll-behavior: smooth;
 }
