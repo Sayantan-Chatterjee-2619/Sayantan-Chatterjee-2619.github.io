@@ -110,7 +110,7 @@
         .side-nav a {
             padding: 4vh 2vw 4vh 2vw;
             text-decoration: none;
-            font-size: 2vw;
+            font-size: 10vw;
             color: #fff;
             display: block;
             transition: 0.3s;
@@ -142,15 +142,10 @@
             .side-nav a {padding: 2vh 2vw 2vh 2vw;}
         }
 
-        @media screen and (max-width: 500px){
-            .side-nav{padding-top: 1vh;}
-            .side-nav a{font-size: 10vw;}
-            .side-nav a{padding: 1vh 2vw 1vh 2vw;}
-        }
 
-        @media screen and (max-width: 380px){
-            .side-nav{padding-top: 1vh;}
-            .side-nav a{font-size: 12vw;}
+        @media screen and (max-width: 780px){
+            .side-nav{padding-top: 2vh;}
+            .side-nav a{font-size: 4vw;}
             .side-nav a{padding: 1vh 2vw 1vh 2vw;}
         }
         
@@ -162,10 +157,10 @@
             .side-nav a {padding: 2vh 2vw 2vh 2vw;}
         }
 
-        @media screen and (max-width: 800px){
-            .side-nav{padding-top: 8vh;}
+        @media screen and (max-width: 1024px){
+            .side-nav{padding-top: 10vh;}
             .side-nav a{font-size: 2vw;}
-            .side-nav a{padding: 2vh 2vw 2vh 2vw;}
+            .side-nav a{padding: 4vh 4vw 4vh 4vw;}
         }
 
         
