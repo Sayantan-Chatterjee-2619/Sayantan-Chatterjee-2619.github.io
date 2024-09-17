@@ -104,11 +104,11 @@
             background-color: var(--secondary-color);
             overflow-x: hidden;
             transition: width 0.3s ease; /* Smooth transition for width */
-            padding-top: 12vh;
+            padding-top: 10vh;
         }
         
         .side-nav a {
-            padding: 4vh 2vw 4vh 2vw;
+            padding: 2vh 2vw 2vh 2vw;
             text-decoration: none;
             font-size: 10vw;
             color: #fff;
