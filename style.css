@@ -148,14 +148,6 @@
             .side-nav a{font-size: 4vw;}
             .side-nav a{padding: 1vh 2vw 1vh 2vw;}
         }
-        
-        
-        /* Further adjustments for smaller screens */
-        @media screen and (max-width: 320px) {
-            .side-nav { padding-top: 5vh; }
-            .side-nav a { font-size: 12vw; } /* Increase size slightly for small screens */
-            .side-nav a {padding: 2vh 2vw 2vh 2vw;}
-        }
 
         @media screen and (max-width: 1024px){
             .side-nav{padding-top: 10vh;}
