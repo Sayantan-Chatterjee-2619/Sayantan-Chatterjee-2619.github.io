@@ -11,39 +11,94 @@ document.querySelectorAll('.side-nav a').forEach(anchor => {
 
 function toggleNav() {
     const sideNav = document.getElementById("sideNav");
-    
-    // If the sideNav's width is currently non-zero, collapse it. Otherwise, expand it.
-    if (sideNav.style.width === "30vw") {
-        sideNav.style.width = "0"; // Close navigation
+    const currentWidth = window.getComputedStyle(sideNav).width;
+
+    if (currentWidth !== "0px") {
+        // Close the navigation
+        sideNav.style.width = "0";
     } else {
-        sideNav.style.width = "30vw"; // Open navigation
+        // Open the navigation
+        const screenWidth = window.innerWidth;
+        let navWidth;
+
+        if (screenWidth <= 480) {
+            navWidth = "50%";  // For mobile phones
+        } else if (screenWidth <= 768) {
+            navWidth = "40%";  // For tablets
+        } else if (screenWidth <= 1024) {
+            navWidth = "30%";  // For small desktops
+        } else {
+            navWidth = "300px";  // For larger screens
+        }
+
+        sideNav.style.width = navWidth;
     }
 }
+
+// Add event listener for window resize
+window.addEventListener('resize', function() {
+    const sideNav = document.getElementById("sideNav");
+    const currentWidth = window.getComputedStyle(sideNav).width;
+
+    // Only adjust if the nav is currently open
+    if (currentWidth !== "0px") {
+        const screenWidth = window.innerWidth;
+        let navWidth;
+
+        if (screenWidth <= 480) {
+            navWidth = "40%";
+        } else if (screenWidth <= 768) {
+            navWidth = "30%";
+        } else if (screenWidth <= 1024) {
+            navWidth = "20%";
+        } else {
+            navWidth = "300px";
+        }
+
+        sideNav.style.width = navWidth;
+    }
+});
 
 
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+const currentTheme = localStorage.getItem('theme');
 
+// Function to set the theme
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    toggleSwitch.checked = theme === 'dark';
+}
+
+// Function to switch theme
 function switchTheme(e) {
     if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+        setTheme('dark');
     } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+        setTheme('light');
     }    
 }
 
-toggleSwitch.addEventListener('change', switchTheme, false);
-
-const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-
+// Check for saved user preference, if any, on load of the website
 if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-
-    if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
+    setTheme(currentTheme);
+} else {
+    // If no saved preference, check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+    } else {
+        setTheme('light');
     }
 }
+
+// Add an event listener to the toggle switch
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+// Listen for changes in system theme
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const newTheme = e.matches ? 'dark' : 'light';
+    setTheme(newTheme);
+});
 
 
 
@@ -78,80 +133,64 @@ backToTop.addEventListener('click', (e) => {
 });
 
  // Updated JavaScript for the achievements section
-const achievementStack = document.querySelector('.achievement-stack');
-const prevButton = document.getElementById('prevAchievement');
-const nextButton = document.getElementById('nextAchievement');
+ const achievementStack = document.querySelector('.achievement-stack');
+ const achievementCards = document.querySelectorAll('.achievement-card');
+ const prevButton = document.getElementById('prevAchievement');
+ const nextButton = document.getElementById('nextAchievement');
+ let currentIndex = 0;
+ let autoSlideInterval;
+ let autoSlideDelay = 3000; // 3 seconds between auto-scrolls
+ let manualPauseTime = 5000; // 5 seconds pause after manual navigation
+ 
+ function updateCards() {
+     achievementCards.forEach((card, index) => {
+         card.classList.remove('active');
+         if (index === currentIndex) {
+             card.classList.add('active');
+         }
+     });
+     achievementStack.style.transform = `translateX(-${currentIndex * 100}%)`;
+ }
+ 
+ function nextAchievement() {
+     currentIndex = (currentIndex + 1) % achievementCards.length;
+     updateCards();
+ }
+ 
+ function prevAchievement() {
+     currentIndex = (currentIndex - 1 + achievementCards.length) % achievementCards.length;
+     updateCards();
+ }
+ 
+ function startAutoScroll() {
+     autoSlideInterval = setInterval(nextAchievement, autoSlideDelay);
+ }
+ 
+ function resetAutoScroll() {
+     clearInterval(autoSlideInterval);
+     setTimeout(startAutoScroll, manualPauseTime);
+ }
+ 
+ nextButton.addEventListener('click', () => {
+     nextAchievement();
+     resetAutoScroll();
+ });
+ 
+ prevButton.addEventListener('click', () => {
+     prevAchievement();
+     resetAutoScroll();
+ });
+ 
+ // Pause auto-scroll when hovering over the achievement container
+ const achievementContainer = document.querySelector('.achievement-container');
+ achievementContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+ achievementContainer.addEventListener('mouseleave', startAutoScroll);
+ 
+ // Initialize
+ updateCards();
+ startAutoScroll();
+ 
 
-const achievements = [
-    {
-        image: "SIH Certificate.jpg",
-        caption: "SIH 2023 Certification",
-        description: "Smart India Hackathon 2023 grand finalist participation certificate."
-    },
-    {
-        image: "AICTE robotics wrkshop.jpg",
-        caption: "AICTE robotics Workshop",
-        description: "Participated in a two-day intensive workshop on voice controlled robot."
-    },
-    {
-        image: "Aradhana certificate.jpg",
-        caption: "Winning Award",
-        description: "Received the Winning Award at Health Education & Cultural Fair Science Exbibition, organised at Sail Abasan Ground, Kabiguru 2nd, City Centre, Durgapur-16, from 19th January to 22nd January 2023."
-    }
-];
-
-let currentAchievementIndex = 0;
-
-function createAchievementCard(achievement) {
-    const card = document.createElement('div');
-    card.className = 'achievement-card';
-    card.innerHTML = `
-        <img src="${achievement.image}" alt="${achievement.caption}" class="achievement-image">
-        <p class="achievement-caption">${achievement.caption}</p>
-        <p>${achievement.description}</p>
-    `;
-    return card;
-}
-
-function initializeAchievements() {
-    achievements.forEach((achievement, index) => {
-        const card = createAchievementCard(achievement);
-        if (index !== 0) {
-            card.style.transform = 'translateX(20px)';
-            card.style.opacity = '0';
-        }
-        achievementStack.appendChild(card);
-    });
-}
-
-function showAchievement(index) {
-    const cards = achievementStack.children;
-    for (let i = 0; i < cards.length; i++) {
-        if (i === index) {
-            cards[i].style.transform = 'translateX(0)';
-            cards[i].style.opacity = '1';
-        } else {
-            cards[i].style.transform = 'translateX(20px)';
-            cards[i].style.opacity = '0';
-        }
-    }
-}
-
-function nextAchievement() {
-    currentAchievementIndex = (currentAchievementIndex + 1) % achievements.length;
-    showAchievement(currentAchievementIndex);
-}
-
-function prevAchievement() {
-    currentAchievementIndex = (currentAchievementIndex - 1 + achievements.length) % achievements.length;
-    showAchievement(currentAchievementIndex);
-}
-
-nextButton.addEventListener('click', nextAchievement);
-prevButton.addEventListener('click', prevAchievement);
-
-// Initialize the achievements
-initializeAchievements();
 
 document.querySelectorAll('.academic-card-flip').forEach(card => {
     // Function to toggle flip

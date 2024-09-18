@@ -96,24 +96,25 @@
         
         .side-nav {
             height: 100%;
-            width: 0; /* Start with closed state */
+            width: 0;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             top: 0;
             left: 0;
             background-color: var(--secondary-color);
             overflow-x: hidden;
-            transition: width 0.3s ease; /* Smooth transition for width */
-            padding-top: 10vh;
+            transition: width 0.3s ease;
+            padding-top: 80px; /* Increased to provide space for the toggle button */
         }
         
         .side-nav a {
-            padding: 2vh 2vw 2vh 2vw;
+            padding: 15px 25px;
             text-decoration: none;
-            font-size: 10vw;
+            font-size: 18px;
             color: #fff;
             display: block;
             transition: 0.3s;
+            white-space: nowrap;
         }
         
         .side-nav a:hover {
@@ -121,40 +122,63 @@
         }
         
         .nav-toggle {
-            font-size: 3vw;
+            font-size: 24px;
             cursor: pointer;
             position: fixed;
-            top: 1vh;
-            left: 1vw;
-            z-index: 2;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
             background: var(--primary-color);
             color: #fff;
             border: none;
-            padding: 1vh 2vw;
+            padding: 10px 15px;
             border-radius: 5px;
         }
         
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .side-nav {
+                padding-top: 60px; /* Increased to provide more space on smaller screens */
+            }
+            
+            .side-nav a {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+            
+            .nav-toggle {
+                font-size: 20px;
+                top: 10px;
+                left: 10px;
+            }
+        }
         
-        /* Adjustments for smaller screen heights */
-        @media screen and (max-height: 611px) {
-            .side-nav { padding-top: 8vh; }
-            .side-nav a { font-size: 3vw; max-width: 80vw; } /* Keep size dynamic */
-            .side-nav a {padding: 2vh 2vw 2vh 2vw;}
+        @media screen and (max-width: 480px) {
+            .side-nav {
+                padding-top: 60px; /* Further increased for mobile screens */
+            }
+            
+            .side-nav a {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+            
+            .nav-toggle {
+                font-size: 18px;
+                padding: 8px 12px;
+            }
         }
-
-
-        @media screen and (max-width: 780px){
-            .side-nav{padding-top: 2vh;}
-            .side-nav a{font-size: 4vw;}
-            .side-nav a{padding: 1vh 2vw 1vh 2vw;}
+        
+        @media screen and (max-height: 450px) {
+            .side-nav {
+                padding-top: 40px; /* Adjusted for very short screens */
+            }
+            
+            .side-nav a {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
         }
-
-        @media screen and (max-width: 1024px){
-            .side-nav{padding-top: 10vh;}
-            .side-nav a{font-size: 2vw;}
-            .side-nav a{padding: 4vh 4vw 4vh 4vw;}
-        }
-
         
 
         :root {
@@ -163,13 +187,33 @@
             --text-color: #333;
             --bg-color: #f4f4f4;
         }
-        
+
         [data-theme="dark"] {
             --primary-color: #004798;
             --secondary-color: #6182a4;
             --text-color: #bcbcbc;
             --bg-color: #000000;
         }
+
+        /* Automatic dark mode based on system preference */
+        @media (prefers-color-scheme: dark) {
+            :root {
+            --primary-color: #004798;
+            --secondary-color: #6182a4;
+            --text-color: #bcbcbc;
+            --bg-color: #000000;
+            }
+
+            /* Override for light theme when manually selected */
+            [data-theme="light"] {
+                --primary-color: #4a90e2;
+                --secondary-color: #2c3e50;
+                --text-color: #333;
+                --bg-color: #f4f4f4;
+            }
+        }
+        
+        
         
         [data-theme="dark"] .academic-card,
         [data-theme="dark"] .project-card,
@@ -442,123 +486,132 @@
             }
         }
 
-        /* Achievement Section Optimization */
-#achievements {
-    padding: 4rem 1rem;
-}
-
-.achievement-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    min-height: 400px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.achievement-stack {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.achievement-card {
-    flex: 0 50% 100%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.achievement-card:not(:first-child) {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    transform: translateX(20px);
-}
-
-.achievement-image {
-    max-width: 100%;
-    max-height: 250px;
-    object-fit: contain;
-    margin-bottom: 1rem;
-}
-
-.achievement-caption {
-    text-align: center;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: black;
-}
-
-.achievement-nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-}
-
-.achievement-nav button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
-}
-
-.achievement-nav button:hover {
-    background-color: var(--secondary-color);
-}
-
-/* Media queries for achievement section */
-@media screen and (max-width: 768px) {
-    .achievement-container {
-        min-height: 350px;
-    }
-
-    .achievement-image {
-        max-height: 200px;
-    }
-
-    .achievement-caption {
-        font-size: clamp(0.9rem, 2vw, 1rem);
-    }
-
-    .achievement-nav button {
-        padding: 0.4rem 0.8rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .achievement-container {
-        min-height: 300px;
-    }
-
-    .achievement-image {
-        max-height: 150px;
-    }
-
-    .achievement-caption {
-        font-size: clamp(0.8rem, 2vw, 0.9rem);
-    }
-
-    .achievement-nav button {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
-    }
-}
-
+        #achievements {
+            padding: 4rem 1rem;
+            position: relative;
+        }
+        
+        .achievement-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Increased from 600px */
+            height: 500px; /* Increased from 400px */
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .achievement-stack {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .achievement-card {
+            flex: 0 0 100%;
+            background-color: white;
+            border-radius: 15px; /* Increased from 10px for a softer look */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            padding: 2rem; /* Increased from 1.5rem */
+            text-align: center;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0.4;
+            transform: scale(0.8);
+        }
+        
+        .achievement-card.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .achievement-image {
+            max-width: 100%;
+            max-height: 300px; /* Increased from 250px */
+            width: auto; /* Added to maintain aspect ratio */
+            height: auto; /* Added to maintain aspect ratio */
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+        }
+        
+        .achievement-card h3 {
+            font-size: 1.5rem; /* Increased from 1.2rem */
+            margin-bottom: 0.75rem; /* Increased from 0.5rem */
+        }
+        
+        .achievement-card p {
+            font-size: 1.1rem; /* Increased from 0.9rem */
+            color: #666;
+            line-height: 1.6; /* Added for better readability */
+        }
+        
+        #prevAchievement, #nextAchievement {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem; /* Increased from 0.5rem 1rem */
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem; /* Increased from 1.2rem */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        #prevAchievement:hover, #nextAchievement:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-50%) scale(1.1); /* Added scale effect on hover */
+        }
+        
+        #prevAchievement {
+            left: 1.5rem; /* Increased from 1rem */
+        }
+        
+        #nextAchievement {
+            right: 1.5rem; /* Increased from 1rem */
+        }
+        
+        @media screen and (max-width: 992px) {
+            .achievement-container {
+                max-width: 90%;
+                height: 550px;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .achievement-container {
+                height: 600px;
+            }
+            
+            .achievement-card h3 {
+                font-size: 1.4rem;
+            }
+            
+            .achievement-card p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .achievement-container {
+                height: 650px;
+            }
+            
+            .achievement-card {
+                padding: 1.5rem;
+            }
+            
+            .achievement-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .achievement-card p {
+                font-size: 0.9rem;
+            }
+            
+            #prevAchievement, #nextAchievement {
+                padding: 0.5rem 1rem;
+                font-size: 1.2rem;
+            }
+        }
 
 /* Academic Grid: Creates a grid layout for the cards */
 .academic-grid {
@@ -638,10 +691,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     opacity: 0.3; /* Adjusted for better readability, you can change this value */
-    z-index: 0;
 }
 
 /* Specific styles for BCREC card */
@@ -694,9 +747,6 @@
     z-index: 1;
 }
 
-        .academic-card-inner.is-flipped {
-            transform: rotateY(180deg);
-        }
 
         .internship-grid {
             display: grid;
