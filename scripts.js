@@ -219,11 +219,13 @@ document.querySelectorAll('.academic-card-flip').forEach(card => {
     // Event listener for desktop (click event)
     card.addEventListener('click', toggleFlip);
 
-    // Event listener for mobile (touchstart event)
-    card.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // Prevent default touch behavior
-        toggleFlip();
-    });
+    // Event listener for mobile (touchend event)
+    card.addEventListener('touchend', toggleFlip);
+
+    // Prevent scrolling when touching the card on mobile
+    card.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+    }, { passive: false });
 });
 
 // Internship card functionality
