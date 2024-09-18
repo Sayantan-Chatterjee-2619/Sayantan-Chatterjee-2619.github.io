@@ -1,4 +1,3 @@
-
 // Smooth scrolling behavior for side navigation links
 document.querySelectorAll('.side-nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -59,7 +58,6 @@ window.addEventListener('resize', function() {
     }
 });
 
-
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const currentTheme = localStorage.getItem('theme');
 
@@ -100,8 +98,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     setTheme(newTheme);
 });
 
-
-
 // Scroll animations for sections
 const sections = document.querySelectorAll('section');
 const backToTop = document.querySelector('.back-to-top');
@@ -132,66 +128,88 @@ backToTop.addEventListener('click', (e) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
- // Updated JavaScript for the achievements section
- const achievementStack = document.querySelector('.achievement-stack');
- const achievementCards = document.querySelectorAll('.achievement-card');
- const prevButton = document.getElementById('prevAchievement');
- const nextButton = document.getElementById('nextAchievement');
- let currentIndex = 0;
- let autoSlideInterval;
- let autoSlideDelay = 3000; // 3 seconds between auto-scrolls
- let manualPauseTime = 5000; // 5 seconds pause after manual navigation
- 
- function updateCards() {
-     achievementCards.forEach((card, index) => {
-         card.classList.remove('active');
-         if (index === currentIndex) {
-             card.classList.add('active');
-         }
-     });
-     achievementStack.style.transform = `translateX(-${currentIndex * 100}%)`;
- }
- 
- function nextAchievement() {
-     currentIndex = (currentIndex + 1) % achievementCards.length;
-     updateCards();
- }
- 
- function prevAchievement() {
-     currentIndex = (currentIndex - 1 + achievementCards.length) % achievementCards.length;
-     updateCards();
- }
- 
- function startAutoScroll() {
-     autoSlideInterval = setInterval(nextAchievement, autoSlideDelay);
- }
- 
- function resetAutoScroll() {
-     clearInterval(autoSlideInterval);
-     setTimeout(startAutoScroll, manualPauseTime);
- }
- 
- nextButton.addEventListener('click', () => {
-     nextAchievement();
-     resetAutoScroll();
- });
- 
- prevButton.addEventListener('click', () => {
-     prevAchievement();
-     resetAutoScroll();
- });
- 
- // Pause auto-scroll when hovering over the achievement container
- const achievementContainer = document.querySelector('.achievement-container');
- achievementContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
- achievementContainer.addEventListener('mouseleave', startAutoScroll);
- 
- // Initialize
- updateCards();
- startAutoScroll();
- 
+// Updated JavaScript for the achievements section
+const achievementStack = document.querySelector('.achievement-stack');
+const achievementCards = document.querySelectorAll('.achievement-card');
+const prevButton = document.getElementById('prevAchievement');
+const nextButton = document.getElementById('nextAchievement');
+let currentIndex = 0;
+let autoSlideInterval;
+let autoSlideDelay = 5000; // 5 seconds between auto-scrolls
+let manualPauseTime = 10000; // 10 seconds pause after manual navigation
 
+function updateCards() {
+    achievementCards.forEach((card, index) => {
+        card.classList.remove('active');
+        if (index === currentIndex) {
+            card.classList.add('active');
+        }
+    });
+    achievementStack.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
 
+function nextAchievement() {
+    currentIndex = (currentIndex + 1) % achievementCards.length;
+    updateCards();
+}
+
+function prevAchievement() {
+    currentIndex = (currentIndex - 1 + achievementCards.length) % achievementCards.length;
+    updateCards();
+}
+
+function startAutoScroll() {
+    autoSlideInterval = setInterval(nextAchievement, autoSlideDelay);
+}
+
+function resetAutoScroll() {
+    clearInterval(autoSlideInterval);
+    setTimeout(startAutoScroll, manualPauseTime);
+}
+
+nextButton.addEventListener('click', () => {
+    nextAchievement();
+    resetAutoScroll();
+});
+
+prevButton.addEventListener('click', () => {
+    prevAchievement();
+    resetAutoScroll();
+});
+
+// Touch events for achievement slider
+let touchStartX = 0;
+let touchEndX = 0;
+
+achievementStack.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+achievementStack.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    if (touchEndX < touchStartX) {
+        nextAchievement();
+    }
+    if (touchEndX > touchStartX) {
+        prevAchievement();
+    }
+    resetAutoScroll();
+}
+
+// Pause auto-scroll when hovering over the achievement container
+const achievementContainer = document.querySelector('.achievement-container');
+achievementContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+achievementContainer.addEventListener('mouseleave', startAutoScroll);
+
+// Initialize
+updateCards();
+startAutoScroll();
+
+// Academic card flip functionality
 document.querySelectorAll('.academic-card-flip').forEach(card => {
     // Function to toggle flip
     const toggleFlip = () => {
@@ -202,10 +220,13 @@ document.querySelectorAll('.academic-card-flip').forEach(card => {
     card.addEventListener('click', toggleFlip);
 
     // Event listener for mobile (touchstart event)
-    card.addEventListener('touchstart', toggleFlip);
+    card.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Prevent default touch behavior
+        toggleFlip();
+    });
 });
 
-
+// Internship card functionality
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.internship-card');
     
@@ -213,16 +234,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const viewCertificateBtn = card.querySelector('.peel-certificate');
         const closeCertificateBtn = card.querySelector('.close-certificate');
         
-        viewCertificateBtn.addEventListener('click', function() {
+        function revealCertificate(e) {
+            e.preventDefault(); // Prevent default behavior
             card.classList.add('animating');
             setTimeout(() => {
                 card.classList.remove('animating');
                 card.classList.add('revealed');
             }, 2000); // Duration of the swingingAndPeeling animation
-        });
+        }
         
-        closeCertificateBtn.addEventListener('click', function() {
+        function closeCertificate(e) {
+            e.preventDefault(); // Prevent default behavior
             card.classList.remove('revealed');
-        });
+        }
+        
+        viewCertificateBtn.addEventListener('click', revealCertificate);
+        viewCertificateBtn.addEventListener('touchstart', revealCertificate);
+        
+        closeCertificateBtn.addEventListener('click', closeCertificate);
+        closeCertificateBtn.addEventListener('touchstart', closeCertificate);
     });
 });
