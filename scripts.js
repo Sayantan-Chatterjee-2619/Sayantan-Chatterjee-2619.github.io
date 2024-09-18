@@ -219,13 +219,46 @@ document.querySelectorAll('.academic-card-flip').forEach(card => {
     // Event listener for desktop (click event)
     card.addEventListener('click', toggleFlip);
 
-    // Event listener for mobile (touchend event)
-    card.addEventListener('touchend', toggleFlip);
-
-    // Prevent scrolling when touching the card on mobile
-    card.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-    }, { passive: false });
+    let startX = 0;
+    let startY = 0;
+    let threshold = 100; // Minimum swipe distance to trigger flip
+    let isFlipped = false; // Track the card flip state
+    
+    // Event listener for touch start
+    card.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    // Event listener for touch end (swipe detection)
+    card.addEventListener('touchend', (e) => {
+        let endX = e.changedTouches[0].clientX;
+        let endY = e.changedTouches[0].clientY;
+    
+        let diffX = endX - startX;
+        let diffY = endY - startY;
+    
+        // Check if the swipe is mostly horizontal
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0 && !isFlipped) {
+                    // Swipe right - flip the card
+                    toggleFlip(); // Call your flip function
+                    isFlipped = true; // Mark the card as flipped
+                } else if (diffX < 0 && isFlipped) {
+                    // Swipe left - flip back the card
+                    toggleFlip(); // Call your flip function
+                    isFlipped = false; // Mark the card as not flipped
+                }
+            }
+        }
+    }, { passive: true });
+    
+    // Sample flip function for demo purposes
+    function toggleFlip() {
+        card.classList.toggle('flipped'); // Assumes you have a 'flipped' class for the flip effect
+    }
+    
 });
 
 // Internship card functionality
