@@ -1201,7 +1201,7 @@
     height: 8px;
     background-color: red;
     position: relative;
-    top: 25px; /* Position it correctly between the posts */
+    top: 0px; /* Position it correctly between the posts */
     border-radius: 5px;
 }
 
@@ -1251,7 +1251,7 @@
     }
     .ribbon {
         height: 5px;
-        top: 15px;
+        top: 0px;
     }
 }
 
@@ -1300,7 +1300,7 @@
     }
     .ribbon {
         height: 4px;
-        top: 12px;
+        top: 0px;
     }
 }
 
