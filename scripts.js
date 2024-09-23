@@ -257,8 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const galleryWall = document.querySelector('.gallery-wall');
     const frames = document.querySelectorAll('.gallery-frame');
-    const prevBtn = document.querySelector('.gallery-prev');
-    const nextBtn = document.querySelector('.gallery-next');
+    
   
     prevBtn.addEventListener('click', () => {
       galleryWall.scrollBy({ left: -300, behavior: 'smooth' });
