@@ -960,6 +960,371 @@
     border-radius: 8px;
 }
 
+#gallery {
+    background-color: var(--bg-color);
+    padding: 60px 0;
+    position: relative;
+}
+
+.gallery-container {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+    display: flex; /* Center items horizontally and vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Animated People */
+.people-watching {
+    position: relative;
+    overflow: hidden;
+}
+
+.people-watching div[class^="person"] {
+    position: absolute;
+    bottom: 20px; /* Near the bottom of the gallery */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Circular shape for "people" */
+    background-color: rgb(18, 0, 0); /* Dark color for the people */
+    animation: watching 10s infinite ease-in-out alternate;
+    z-index: 2; /* Ensure it's above the frames */
+}
+
+[data-theme="dark"] .people-watching div[class^="person"]{
+    background: linear-gradient(to bottom, rgb(119, 71, 71), rgb(49, 0, 0));;
+}
+
+/* Adjust positions and animation delays */
+.people-watching .person1 {
+    left: 5%; /* Adjusted position */
+    animation-delay: 0s; /* Starts immediately */
+}
+
+.people-watching .person2 {
+    left: 10%; /* Adjusted position */
+    animation-delay: 2s; /* Delayed start */
+}
+
+.people-watching .person3 {
+    left: 19%; /* Adjusted position */
+    animation-delay: 5s; /* Delayed start */
+}
+
+.people-watching .person4 {
+    left: 28%; /* Adjusted position */
+    animation-delay: 3s; /* Delayed start */
+}
+
+.people-watching .person5 {
+    left: 37%; /* Adjusted position */
+    animation-delay: 1s; /* Delayed start */
+}
+
+.people-watching .person6 {
+    left: 48%; /* Adjusted position */
+    animation-delay: 0s; /* Starts immediately */
+}
+
+.people-watching .person7 {
+    left: 54%; /* Adjusted position */
+    animation-delay: 7s; /* Delayed start */
+}
+
+.people-watching .person8 {
+    left: 62%; /* Adjusted position */
+    animation-delay: 4s; /* Delayed start */
+}
+
+.people-watching .person9 {
+    left: 70%; /* Adjusted position */
+    animation-delay: 6s; /* Delayed start */
+}
+
+.people-watching .person10 {
+    left: 80%; /* Adjusted position */
+    animation-delay: 9s; /* Delayed start */
+}
+
+/* Animation for people "watching" the frames */
+@keyframes watching {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(-10px); }
+}
+
+.gallery-wall {
+    display: flex;
+    align-items: center; /* Center frames vertically */
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+    min-height: 900px;
+    width: auto;
+    background: linear-gradient(to top, rgba(255, 200, 0, 0.516), rgba(255, 100, 0, 0.516), transparent);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2); /* Wall shadow */
+}
+
+/* Dark theme gradient */
+[data-theme="dark"] .gallery-wall {
+    background: linear-gradient(to top, rgba(50, 50, 150, 0.6), rgba(190, 190, 190, 0.6), transparent);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5); /* Darker shadow for dark theme */
+}
+
+.gallery-wall::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-frame {
+    flex: 0 0 auto;
+    background-color: white;
+    border: 20px solid #ffc404; /* Dark wood border */
+    margin-right: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Frame shadow */
+    border-radius: 12px;
+    border-inline-start-color: #ffd95b;
+    border-inline-end-color: #ffc404;
+    border-top-color: #ffc404;
+    border-bottom-color: #ffd95b;
+    transition: transform 0.3s ease, z-index 0.3s ease;
+    transform: translateY(0); /* Reset the translateY to default */
+    position: relative; /* Ensure frame stays in flow */
+}
+
+.gallery-frame::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    width: 200px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+    transform: translate(-50%);
+    opacity: 0.8; /* Faint spotlight effect */
+    z-index: -1;
+}
+
+/* Central Light (glows in dark mode) */
+.central-light {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 30px;
+    background: radial-gradient(circle, rgba(255, 255, 200, 0.9), transparent);
+    opacity: 0; /* Invisible by default */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Show the central light in dark mode */
+[data-theme="dark"] .central-light {
+    opacity: 1;
+    animation: lightGlow 2s ease-in-out infinite alternate;
+}
+
+/* Light glowing animation */
+@keyframes lightGlow {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.gallery-frame:hover {
+    transform: scale(1.05); /* Smooth scaling on hover */
+    z-index: 1;
+}
+
+/* Expanded state */
+.gallery-frame.expanded {
+    transform: scale(1.2); /* Slightly larger on expand */
+    z-index: 10; /* Bring the frame in front of others */
+}
+
+/* Image styling */
+.gallery-frame img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Navigation buttons */
+.gallery-nav {
+    position: absolute;
+    top: 85%; /* Center the navigation button vertically */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.gallery-prev {
+    left: 1px; /* Added space between the button and the edge */
+}
+
+.gallery-next {
+    right: 1px; /* Added space between the button and the edge */
+}
+
+/* Container to hold multiple ribbon barriers */
+.exhibition-ribbon-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows multiple ribbons to repeat horizontally */
+    justify-content: space-around; /* Distribute space between ribbons */
+    position: absolute;
+    bottom: 190px; /* Move up from the bottom */
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Ensure it stays above gallery content */
+}
+
+/* Single ribbon barrier with posts */
+.exhibition-ribbon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%; /* Adjust the width for each ribbon set */
+    height: 100px; /* Adjust height to match post height */
+    margin: 5px; /* Add margin between the ribbons */
+}
+
+/* Post styles */
+.post {
+    width: 20px;
+    height: 100px;
+    background-color: black;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Base of the post */
+.post::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 40px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+/* Ribbon styles */
+.ribbon {
+    width: 100%; /* Adjust this to fit between the posts */
+    height: 8px;
+    background-color: red;
+    position: relative;
+    top: 25px; /* Position it correctly between the posts */
+    border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+    /* Adjust the gallery frame margin */
+    .gallery-frame {
+        margin-right: 10px;
+    }
+    
+    /* Reduce padding and font size for navigation */
+    .gallery-nav {
+        padding: 8px 12px;
+        font-size: 16px;
+        top: 86%; /* Adjusted for better placement on smaller screens */
+    }
+
+    /* Adjust previous and next button positions */
+    .gallery-prev {
+        left: 5px;  /* More space between button and screen edge */
+    }
+
+    .gallery-next {
+        right: 5px;  /* More space between button and screen edge */
+    }
+
+    /* Reduce the size of the people */
+    .people-watching div[class^="person"] {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Central light size adjustment */
+    .central-light {
+        width: 70%; /* Shrink central light */
+        height: 40px;
+    }
+
+    /* Shrink the exhibition ribbon and post sizes */
+    .exhibition-ribbon {
+        width: 30%; /* Adjust width for smaller screens */
+        height: 60px;
+    }
+    .post {
+        width: 10px;
+        height: 60px;
+    }
+    .ribbon {
+        height: 5px;
+        top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Reduce frame margin even further */
+    .gallery-frame {
+        margin-right: 5px;
+    }
+
+    /* Decrease padding and font size for navigation buttons */
+    .gallery-nav {
+        padding: 6px 10px;
+        font-size: 14px;
+        top: 88%;
+    }
+
+    /* Adjust position of previous and next buttons */
+    .gallery-prev {
+        left: 3px;  /* Tighten the button positioning */
+    }
+
+    .gallery-next {
+        right: 3px;  /* Tighten the button positioning */
+    }
+
+    /* Shrink the people */
+    .people-watching div[class^="person"] {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Central light size adjustment */
+    .central-light {
+        width: 80%; /* Shrink even more */
+        height: 45px;
+    }
+
+    /* Shrink the exhibition ribbon and post sizes further */
+    .exhibition-ribbon {
+        width: 30%; /* Full-width for the mobile */
+        height: 50px;
+    }
+    .post {
+        width: 10px;
+        height: 50px;
+    }
+    .ribbon {
+        height: 4px;
+        top: 12px;
+    }
+}
+
+
 
 
 /* Global styles for flexibility */

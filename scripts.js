@@ -253,3 +253,24 @@ document.addEventListener('DOMContentLoaded', function() {
         closeCertificateBtn.addEventListener('touchstart', closeCertificate);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryWall = document.querySelector('.gallery-wall');
+    const frames = document.querySelectorAll('.gallery-frame');
+    const prevBtn = document.querySelector('.gallery-prev');
+    const nextBtn = document.querySelector('.gallery-next');
+  
+    prevBtn.addEventListener('click', () => {
+      galleryWall.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+  
+    nextBtn.addEventListener('click', () => {
+      galleryWall.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  
+    frames.forEach(frame => {
+        frame.addEventListener('click', () => {
+          frame.classList.toggle('expanded');
+        });
+      });      
+  });
