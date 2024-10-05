@@ -134,3 +134,129 @@ ul {
     text-align: center;
     font-style: italic;
 }
+
+/* Media Queries */
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+    .card {
+        width: 90vw;
+        height: 85vh;
+    }
+    
+    .front h1 {
+        font-size: 1.6em;
+    }
+    
+    .front p {
+        font-size: 1.1em;
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .card {
+        width: 95vw;
+        height: 90vh;
+    }
+    
+    .front img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .front h1 {
+        font-size: 1.4em;
+    }
+    
+    .front p {
+        font-size: 1em;
+    }
+    
+    .social-icons a {
+        font-size: 1.8rem;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .card {
+        width: 98vw;
+        height: 95vh;
+    }
+    
+    .front img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .front h1 {
+        font-size: 1.2em;
+    }
+    
+    .front p {
+        font-size: 0.9em;
+    }
+    
+    .social-icons a {
+        font-size: 1.6rem;
+        margin: 0 10px;
+    }
+    
+    h2 {
+        font-size: 1.4em;
+    }
+    
+    .guide-text {
+        bottom: 5px;
+        font-size: 0.8em;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .card {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .card-side {
+        border-radius: 0;
+    }
+    
+    .front img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .front h1 {
+        font-size: 1.1em;
+    }
+    
+    .front p {
+        font-size: 0.8em;
+    }
+    
+    .social-icons a {
+        font-size: 1.4rem;
+        margin: 0 8px;
+    }
+    
+    h2 {
+        font-size: 1.2em;
+    }
+    
+    .skills .skill-name {
+        font-size: 0.9em;
+    }
+    
+    .download-button {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+    
+    .guide-text {
+        font-size: 0.7em;
+    }
+}
