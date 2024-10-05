@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('theme.css');
         
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #2c3e50;
-            --text-color: #333;
-            --bg-color: #f4f4f4;
-        }
         
         * {
             margin: 0;
@@ -33,66 +28,120 @@
             text-align: center;
         }
         
-        .profile-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 45px;
-        }
+        /* Profile Container */
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 45px;
+}
 
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .profile-picture {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            color: var(--primary-color);
-            border: 5px solid #ffffff;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        .profile-picture:hover {
-            transform: scale(1.5);
-        }
-        
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInDown 1s forwards;
-        }
-        
-        header p {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards 0.5s;
-        }
-        
-        @keyframes fadeInDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        } 
+/* Profile Picture Styling */
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color: var(--primary-color);
+    border: 5px solid #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative; /* Needed for absolute positioning of resume-link */
+    transition: transform 0.3s ease;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Resume Link Styling */
+.resume-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    font-size: 1.0em; /* Increased for better visibility */
+    text-align: center;
+    border-radius: 50%; /* Ensure it fits within the circular profile picture */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(20px); /* Slight transition from bottom */
+}
+
+.resume-link a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px; /* Adjusted for a better fit */
+    border: 2px solid white;
+    border-radius: 50px; /* Rounded corners for a clean look */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.resume-link a:hover {
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+}
+
+/* Icon Styling within the Link */
+.resume-link i {
+    font-size: 2px;
+}
+
+
+/* Hover Effect for Profile Picture */
+.profile-picture:hover {
+    transform: scale(1.5); /* Slight zoom effect */
+}
+
+.profile-picture:hover .resume-link {
+    opacity: 1; /* Show the link */
+    transform: translateY(0); /* Slide it into position */
+}
+
+/* Header Text Animation */
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 1s forwards;
+}
+
+header p {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.5s;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
         
         .side-nav {
             height: 100%;
@@ -180,41 +229,6 @@
             }
         }
         
-
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #2c3e50;
-            --text-color: #001a4a;
-            --bg-color: #d3ddff;
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #2c3e50;
-            --secondary-color: #4a90e2;
-            --text-color: #d3ddff;
-            --bg-color: #001a4a;
-        }
-
-        /* Automatic dark mode based on system preference */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #2c3e50;
-                --secondary-color: #4a90e2;
-                --text-color: #d3ddff;
-                --bg-color: #001a4a;
-            }
-
-            /* Override for light theme when manually selected */
-            [data-theme="light"] {
-                --primary-color: #4a90e2;
-            --secondary-color: #2c3e50;
-            --text-color: #001a4a;
-            --bg-color: #d3ddff;
-            }
-        }
-        
-        
-        
         [data-theme="dark"] .academic-card,
         [data-theme="dark"] .project-card,
         [data-theme="dark"] .internship-card,
@@ -243,119 +257,7 @@
             color: var(--text-color);
             transition: all 0.3s ease;
         }
-        
-        .theme-switch-wrapper {
-            display: flex;
-            align-items: center;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 100;
-        }
-        
-        .theme-switch {
-            display: inline-block;
-            height: 17px;
-            position: relative;
-            width: 30px;
-        }
-        
-        .theme-switch input {
-            display: none;
-        }
-        
-        .slider {
-            background-color: #ccc;
-            bottom: 0;
-            cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: .4s;
-        }
-        
-        .slider:before {
-            background-color: #fff;
-            bottom: 2px;
-            content: "";
-            height: 13px;
-            left: 2px;
-            position: absolute;
-            transition: .4s;
-            width: 13px;
-        }
-        
-        input:checked + .slider {
-            background-color: var(--primary-color);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(13px);
-        }
-        
-        .slider.round {
-            border-radius: 17px;
-        }
-        
-        .slider.round:before {
-            border-radius: 25%;
-        }
-        
-        /* Sun and Moon Icon Styling */
-        .slider i {
-            position: absolute;
-            top: 25%;
-            transform: translateY(-25%);
-            width: 10px;
-            height: 10px;
-            color: #fff;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
 
-        /* Style the sun and moon icons */
-.theme-switch-wrapper .fa-sun, 
-.theme-switch-wrapper .fa-moon {
-    margin-left: -20px;
-    margin-bottom: 8px;
-    font-size: 1.0rem;
-    color: #ccc; /* Default color */
-    transition: color 0.3s ease;
-}
-        
-        .slider .fa-sun {
-            left: 8px;
-            color: #ffcc00; /* Sun icon color */
-            box-shadow: 0px 0px 30px rgb(255, 179, 0);
-        }
-        
-        .slider .fa-moon {
-            right: 8px;
-            color: #ffffff9d; /* Moon icon color */
-            box-shadow: 0px 0px 40px rgb(255, 255, 255)
-        }
-        
-        input:checked + .slider .fa-sun {
-            opacity: 0;
-        }
-        
-        input:checked + .slider .fa-moon {
-            opacity: 1;
-        }
-        
-        input:not(:checked) + .slider .fa-sun {
-            opacity: 1;
-        }
-        
-        input:not(:checked) + .slider .fa-moon {
-            opacity: 0;
-        }
-        
-
-        
-        
-        
         section {
             padding: 60px 0;
             opacity: 0;
