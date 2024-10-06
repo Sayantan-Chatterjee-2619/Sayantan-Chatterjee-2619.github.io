@@ -273,3 +273,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });      
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.querySelector('.resume-link').classList.add('peek');
+    }, 3000); // 3000 milliseconds = 3 seconds
+});

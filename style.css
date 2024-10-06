@@ -34,6 +34,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 45px;
+    z-index: 2;
 }
 
 /* Profile Picture Styling */
@@ -52,6 +53,7 @@
     overflow: hidden;
     position: relative; /* Needed for absolute positioning of resume-link */
     transition: transform 0.3s ease;
+    z-index: 2;
 }
 
 .profile-picture img {
@@ -94,7 +96,11 @@
 
 .resume-link a:hover {
     background-color: var(--bg-color);
-    color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.resume-link p{
+    color: var(--text-color);
 }
 
 /* Icon Styling within the Link */
@@ -113,9 +119,27 @@
     transform: translateY(0); /* Slide it into position */
 }
 
+.guide-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-40px);
+    z-index: 1;
+}
+
+.guide-container h6{
+    color: var(--text-color);
+    opacity: 0;
+    animation: blinker 10s linear infinite ;
+
+}
+
+
+
 /* Header Text Animation */
 header h1 {
     font-size: 3rem;
+    color: var(--bg-color);
     margin-bottom: 10px;
     opacity: 0;
     transform: translateY(-20px);
@@ -124,6 +148,7 @@ header h1 {
 
 header p {
     opacity: 0;
+    color: var(--bg-color);
     transform: translateY(20px);
     animation: fadeInUp 1s forwards 0.5s;
 }
@@ -141,6 +166,14 @@ header p {
         transform: translateY(0);
     }
 }
+
+@keyframes blinker {
+    50%{
+        opacity: 0.3;
+    }
+}
+
+
 
         
         .side-nav {
@@ -229,28 +262,7 @@ header p {
             }
         }
         
-        [data-theme="dark"] .academic-card,
-        [data-theme="dark"] .project-card,
-        [data-theme="dark"] .internship-card,
-        [data-theme="dark"] .skill-card,
-        [data-theme="dark"] .achievement-card {
-            background-color: #d3ddff;
-            color: #001a4a;
-        }
         
-        [data-theme="dark"] .academic-card h3,
-        [data-theme="dark"] .project-card h3,
-        [data-theme="dark"] .internship-card h3,
-        [data-theme="dark"] .skill-card h3 {
-            color: #001a4a;
-        }
-        
-        [data-theme="dark"] .academic-card p,
-        [data-theme="dark"] .project-card p,
-        [data-theme="dark"] .internship-card p,
-        [data-theme="dark"] .skill-card p {
-            color: #001a4a;
-        }
         
         body {
             background-color: var(--bg-color);
@@ -273,7 +285,6 @@ header p {
         h2 {
             font-size: 2.5rem;
             margin-bottom: 30px;
-            color: var(--secondary-color);
         }
         
         .project-grid, .skills-grid {
@@ -282,13 +293,6 @@ header p {
             gap: 30px;
         }
         
-        .project-card, .skill-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
 
         .project-card p, .skill-card p {
             padding: 0 20px 20px; /* Ensure padding is applied to the paragraph */
@@ -296,11 +300,6 @@ header p {
             line-height: 1.5; /* Adjust line-height for better readability */
         }
         
-        
-        .project-card:hover, .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
         
         .project-card img {
             width: 100%;
@@ -323,6 +322,19 @@ header p {
             color: var(--primary-color);
             margin-bottom: 30px;
         }
+
+        .project-card, .skill-card, .academic-card, .internship-card {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover, .skill-card:hover, .internship-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 8px var(--shadow-color);
+        }
         
         .social-icons {
             display: flex;
@@ -331,14 +343,14 @@ header p {
         }
         
         .social-icons a {
-            color: var(--secondary-color);
+            color: var(--primary-color);
             font-size: 3rem;
             margin: 0 15px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
         
         .social-icons a:hover {
-            color: var(--primary-color);
+            color: var(--text-color);
             transform: scale(1.1);
         }
         
@@ -416,7 +428,7 @@ header p {
         
         .achievement-card {
             flex: 0 0 100%;
-            background-color: #edfcff;
+            background-color: #fdfdfd;
             border-radius: 15px; /* Increased from 10px for a softer look */
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
             padding: 2rem; /* Increased from 1.5rem */
@@ -447,7 +459,6 @@ header p {
         
         .achievement-card p {
             font-size: 1.1rem; /* Increased from 0.9rem */
-            color: #666;
             line-height: 1.6; /* Added for better readability */
         }
         
@@ -568,7 +579,7 @@ header p {
 
 /* Front card content */
 .academic-card-front {
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -678,6 +689,7 @@ header p {
             transform-style: preserve-3d;
             border: none;
             border-radius: 10px;
+            background-color: white;
         }
         
         .internship-card-inner {
@@ -698,7 +710,6 @@ header p {
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            background-color: #edfcff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding: 20px;
@@ -728,7 +739,6 @@ header p {
             justify-content: center;
             align-items: center; /* Center the certificate */
             padding: 20px;
-            background-color: #edfcff;
             opacity: 0; /* Initially hidden */
 
         }
@@ -850,13 +860,12 @@ header p {
 .internship-card h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #333;
+    
 }
 
 /* Internship card description */
 .internship-card p {
     font-size: 1rem;
-    color: #555;
     line-height: 1.5;
     margin: 0;
 }
