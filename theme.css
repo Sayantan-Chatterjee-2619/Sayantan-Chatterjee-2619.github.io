@@ -179,20 +179,20 @@ h2 {
     display: flex;
     align-items: center;
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px;  /* Raised closer to the top */
+    right: 10px; /* Moved closer to the right */
     z-index: 100;
     background: rgba(255, 255, 255, 0.1);
-    padding: 8px;
+    padding: 6px;  /* Reduced padding */
     border-radius: 15px;
     box-shadow: 0 3px 5px var(--shadow-color);
 }
 
 .theme-switch {
     display: inline-block;
-    height: 20px; /* Reduced from 24px */
+    height: 16px;  /* Further reduced from 20px */
     position: relative;
-    width: 40px;  /* Reduced from 48px */
+    width: 32px;  /* Further reduced from 40px */
 }
 
 .theme-switch input {
@@ -208,18 +208,18 @@ h2 {
     right: 0;
     top: 0;
     transition: .4s;
-    border-radius: 20px; /* Reduced to match smaller slider */
+    border-radius: 16px;  /* Adjusted for smaller size */
 }
 
 .slider:before {
     background-color: #fff;
     bottom: 2px;
     content: "";
-    height: 16px; /* Reduced from 20px */
+    height: 12px;  /* Further reduced from 16px */
     left: 2px;
     position: absolute;
     transition: .4s;
-    width: 16px; /* Reduced from 20px */
+    width: 12px;  /* Further reduced from 16px */
     border-radius: 50%;
     box-shadow: 0 2px 4px var(--shadow-color);
 }
@@ -229,7 +229,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-    transform: translateX(20px); /* Adjusted for smaller width */
+    transform: translateX(16px);  /* Adjusted for smaller width */
 }
 
 /* Sun and Moon Icon Styling */
@@ -237,8 +237,8 @@ input:checked + .slider:before {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 14px; /* Reduced from 16px */
-    height: 14px; /* Reduced from 16px */
+    width: 10px;  /* Further reduced from 14px */
+    height: 10px;  /* Further reduced from 14px */
     color: #fff;
     opacity: 0;
     transition: opacity 0.3s;
@@ -247,23 +247,23 @@ input:checked + .slider:before {
 /* Adjusted icon sizes */
 .theme-switch-wrapper .fa-sun, 
 .theme-switch-wrapper .fa-moon {
-    margin-left: -25px;
-    margin-right: 8px;
-    font-size: 1rem; /* Reduced font size */
+    margin-left: -20px;
+    margin-right: 6px;
+    font-size: 0.9rem;  /* Further reduced font size */
     color: var(--text-color);
     transition: color 0.3s ease;
 }
 
 .slider .fa-sun {
-    left: 4px; /* Adjusted positioning */
+    left: 3px;  /* Adjusted positioning */
     color: #ffd700;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
 }
 
 .slider .fa-moon {
-    right: 4px; /* Adjusted positioning */
+    right: 3px;  /* Adjusted positioning */
     color: #c0c0c0;
-    text-shadow: 0 0 8px rgba(192, 192, 192, 0.7);
+    text-shadow: 0 0 6px rgba(192, 192, 192, 0.7);
 }
 
 input:checked + .slider .fa-sun {
