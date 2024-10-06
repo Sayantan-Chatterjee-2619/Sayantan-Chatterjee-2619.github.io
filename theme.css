@@ -121,7 +121,7 @@ h2 {
     height: 200%;
     background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
     opacity: 0;
-    animation: glowPulse 4s infinite;
+    animation: glowPulse 8s infinite;
     pointer-events: none;
 }
 
@@ -145,7 +145,7 @@ h2 {
 .internship-card:hover::before,
 .skill-card:hover::before,
 .achievement-card:hover::before {
-    animation: glowPulse 2s infinite;
+    animation: glowPulse 8s infinite;
 }
 
 .academic-card h3,
