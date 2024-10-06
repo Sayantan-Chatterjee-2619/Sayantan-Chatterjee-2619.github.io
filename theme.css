@@ -140,7 +140,7 @@ h2 {
     }
 }
 
-.academic-card:hover::before,
+.academic-card-front:hover::before,
 .project-card:hover::before,
 .internship-card:hover::before,
 .skill-card:hover::before,
