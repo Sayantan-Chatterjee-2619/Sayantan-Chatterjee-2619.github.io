@@ -61,42 +61,77 @@ window.addEventListener('resize', function() {
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const currentTheme = localStorage.getItem('theme');
 
-// Function to set the theme
-function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    toggleSwitch.checked = theme === 'dark';
-}
+// Function to determine the current season or festival
+function getCurrentSeasonOrFestival() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
 
-// Function to switch theme
-function switchTheme(e) {
-    if (e.target.checked) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }    
-}
+    // Festival date ranges (adjust these dates as needed)
+    const durgaPujaStart = new Date(currentDate.getFullYear(), 9, 3); // October 10
+    const durgaPujaEnd = new Date(currentDate.getFullYear(), 9, 14);   // October 14
+    const diwaliStart = new Date(currentDate.getFullYear(), 9, 30);    // November 1
+    const diwaliEnd = new Date(currentDate.getFullYear(), 10, 3);      // November 5
 
-// Check for saved user preference, if any, on load of the website
-if (currentTheme) {
-    setTheme(currentTheme);
-} else {
-    // If no saved preference, check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark');
+    // Check for festivals first
+    if (currentDate >= durgaPujaStart && currentDate <= durgaPujaEnd) {
+        return 'durga-puja';
+    } else if (currentDate >= diwaliStart && currentDate <= diwaliEnd) {
+        return 'diwali';
+    } 
+
+    // Otherwise, check for seasons
+    if (currentMonth >= 2 && currentMonth <= 3) {
+        return 'spring';
+    } else if (currentMonth >= 4 && currentMonth <= 6) {
+        return 'summer';
+    } else if (currentMonth >= 7 && currentMonth <= 8) {
+        return 'monsoon';
+    } else if (currentMonth >= 9 && currentMonth <= 10) {
+        return 'autumn';
     } else {
-        setTheme('light');
+        return 'winter';
     }
 }
 
-// Add an event listener to the toggle switch
+// Function to set the theme, including seasonal or festival themes
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+
+    // Ensure the toggle switch reflects the correct state for dark/light mode
+    toggleSwitch.checked = theme.includes('dark');
+}
+
+// Function to handle switching between light and dark modes for the current season or festival
+function switchTheme(e) {
+    const currentSeasonOrFestival = getCurrentSeasonOrFestival();
+
+    if (e.target.checked) {
+        setTheme(`${currentSeasonOrFestival}-dark`);  // Apply dark version of the current theme
+    } else {
+        setTheme(`${currentSeasonOrFestival}-light`); // Apply light version of the current theme
+    }
+}
+
+// Check for saved user preference or system preference, and apply the appropriate theme
+if (currentTheme) {
+    setTheme(currentTheme);  // Apply saved theme from localStorage
+} else {
+    const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const defaultTheme = systemDarkMode ? `${getCurrentSeasonOrFestival()}-dark` : `${getCurrentSeasonOrFestival()}-light`;
+    setTheme(defaultTheme);
+}
+
+// Add event listener for theme switch
 toggleSwitch.addEventListener('change', switchTheme, false);
 
-// Listen for changes in system theme
+// Listen for changes in system theme (light or dark)
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    const newTheme = e.matches ? 'dark' : 'light';
+    const newTheme = e.matches ? `${getCurrentSeasonOrFestival()}-dark` : `${getCurrentSeasonOrFestival()}-light`;
     setTheme(newTheme);
 });
+
 
 // Scroll animations for sections
 const sections = document.querySelectorAll('section');
@@ -279,3 +314,74 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.resume-link').classList.add('peek');
     }, 3000); // 3000 milliseconds = 3 seconds
 });
+
+function addAnimationsForTheme(theme) {
+    const animationContainer = document.querySelector('.theme-animations');
+    animationContainer.innerHTML = ''; // Clear any previous animations
+
+    function createSideAnimation(className, count, side) {
+        const spacing = window.innerHeight / count; // Ensure elements are spaced out vertically
+        for (let i = 0; i < count; i++) {
+            const animationElement = document.createElement('div');
+            animationElement.classList.add(className);
+
+            // Set the position on the left or right side with slight random adjustments
+            if (side === 'left') {
+                const offsetX = Math.random() * 350; // Random offset to move it slightly right from the edge
+                animationElement.style.left = `${offsetX}px`; // Slight adjustment from the left edge
+            } else if (side === 'right') {
+                const offsetX = Math.random() * 350; // Random offset to move it slightly left from the edge
+                animationElement.style.right = `${offsetX}px`; // Slight adjustment from the right edge
+            }
+
+            // Spacing the elements vertically, with some slight variation
+            const baseY = i * spacing; // Base Y position spaced evenly
+            const offsetY = Math.random() * (spacing / 2); // Add random vertical variation within half of the spacing
+            animationElement.style.top = `${baseY + offsetY}px`;
+
+            animationContainer.appendChild(animationElement);
+        }
+    }
+
+    // Clear any previous animations before adding new ones
+    if (theme.includes('spring')) {
+        createSideAnimation('petal', 10, 'left'); // 10 petals on the left
+        createSideAnimation('petal', 10, 'right'); // 10 petals on the right
+    } else if (theme.includes('summer')) {
+        const sunRay = document.createElement('div');
+        sunRay.classList.add('sun-ray');
+        sunRay.style.left = '50%'; // Center sun ray
+        animationContainer.appendChild(sunRay);
+    } else if (theme.includes('monsoon')) {
+        createSideAnimation('raindrop', 20, 'left'); // 20 raindrops on the left
+        createSideAnimation('raindrop', 20, 'right'); // 20 raindrops on the right
+    } else if (theme.includes('autumn')) {
+        createSideAnimation('leaf', 15, 'left'); // 15 leaves on the left
+        createSideAnimation('leaf', 15, 'right'); // 15 leaves on the right
+    } else if (theme.includes('winter')) {
+        createSideAnimation('snowflake', 20, 'left'); // 20 snowflakes on the left
+        createSideAnimation('snowflake', 20, 'right'); // 20 snowflakes on the right
+    }  else if (theme.includes('diwali')) {
+        createSideAnimation('firework', 10, 'left'); // 10 fireworks on the left
+        createSideAnimation('firework', 10, 'right'); // 10 fireworks on the right
+    }
+}
+
+// Call this function when the theme changes or on page load
+const currenttheme = document.documentElement.getAttribute('data-theme');
+addAnimationsForTheme(currenttheme);
+
+// If you're switching themes dynamically, ensure to call `addAnimationsForTheme(newTheme)` when the theme changes
+
+// If theme is switched manually (dark/light toggle or system preference)
+toggleSwitch.addEventListener('change', () => {
+    const newTheme = document.documentElement.getAttribute('data-theme');
+    addAnimationsForTheme(newTheme); // Update the animations
+});
+
+// If the theme is loaded based on system or local storage
+window.addEventListener('DOMContentLoaded', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    addAnimationsForTheme(currentTheme);
+});
+

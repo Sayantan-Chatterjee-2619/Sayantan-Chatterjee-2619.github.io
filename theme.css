@@ -81,9 +81,421 @@
     color: #ffffff;
 }
 
+/* Seasonal/Festival Themes */
+
+/* Spring */
+/* Spring Light */
+[data-theme="spring-light"] {
+    --header-color: #4caf4f68;
+    --primary-color: #4CAF50;
+    --secondary-color: #8BC34A;
+    --text-color: #1B5E20;
+    --bg-color: #E0FFD1;
+    --shadow-color: rgba(0, 150, 0, 0.1);
+    --heading-color: #2E7D32;
+    --card-bg-color: #ffffff;
+    --card-border-color: #A5D6A7;
+    --gallery-frame-border: #66BB6A;
+    --gallery-frame-border-light: #A5D6A7;
+    --glow-color: rgba(76, 175, 80, 0.61);
+}
+
+/* Spring Dark */
+[data-theme="spring-dark"] {
+    --header-color: #81c7846c;
+    --primary-color: #81C784;
+    --secondary-color: #388E3C;
+    --text-color: #E8F5E9;
+    --bg-color: #1B5E20;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --heading-color: #A5D6A7;
+    --card-bg-color: #2E7D32;
+    --card-border-color: #66BB6A;
+    --gallery-frame-border: #388E3C;
+    --gallery-frame-border-light: #81C784;
+    --glow-color: rgba(76, 175, 80, 0.58);
+}
+
+
+/* Floating petals animation */
+.petal {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: pink;
+    border-radius: 50%;
+    animation: floatPetals 5s linear infinite;
+  }
+  
+  @keyframes floatPetals {
+    0% {
+      transform: translateY(-100px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+[data-theme="spring-light"] .header-background {
+    background-image: url('images/spring-header.jpg');
+}
+[data-theme="spring-dark"] .header-background {
+    background-image: url('images/spring-header.jpg');
+}
+
+/* Summer */
+/* Summer Light */
+[data-theme="summer-light"] {
+    --header-color: #ffa82671;
+    --primary-color: #FFA726;
+    --secondary-color: #FFCC80;
+    --text-color: #E65100;
+    --bg-color: #FFF8E1;
+    --shadow-color: rgba(255, 170, 70, 0.1);
+    --heading-color: #FB8C00;
+    --card-bg-color: #ffffff;
+    --card-border-color: #FFB74D;
+    --gallery-frame-border: #FF9800;
+    --gallery-frame-border-light: #FFCC80;
+    --glow-color: rgba(255, 165, 0, 0.61);
+}
+
+/* Summer Dark */
+[data-theme="summer-dark"] {
+    --header-color: #ffb84d6e;
+    --primary-color: #FFB74D;
+    --secondary-color: #FF9800;
+    --text-color: #FFF3E0;
+    --bg-color: #E65100;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --heading-color: #FFCC80;
+    --card-bg-color: #FB8C00;
+    --card-border-color: #FFA726;
+    --gallery-frame-border: #FFB74D;
+    --gallery-frame-border-light: #FFCC80;
+    --glow-color: rgba(255, 145, 0, 0.58);
+}
+
+
+.sun-ray {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 255, 0, 0.2);
+    border-radius: 50%;
+    animation: sunRays 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes sunRays {
+    0% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0.2;
+      transform: scale(1.5);
+    }
+  }
+
+  [data-theme="summer-light"] .header-background {
+    background-image: url('images/summer-header.jpg');
+}
+[data-theme="summer-dark"] .header-background {
+    background-image: url('images/summer-header.jpg');
+}
+  
+
+/* Monsoon */
+/* Monsoon Light */
+[data-theme="monsoon-light"] {
+    --header-color: #95d9fd6c;
+    --primary-color: #0288D1;
+    --secondary-color: #03A9F4;
+    --text-color: #01579B;
+    --bg-color: #B3E5FC;
+    --shadow-color: rgba(0, 136, 209, 0.1);
+    --heading-color: #0277BD;
+    --card-bg-color: #ffffff;
+    --card-border-color: #81D4FA;
+    --gallery-frame-border: #4FC3F7;
+    --gallery-frame-border-light: #81D4FA;
+    --glow-color: rgba(0, 136, 209, 0.61);
+}
+
+/* Monsoon Dark */
+[data-theme="monsoon-dark"] {
+    --header-color: #81d4fa6d;
+    --primary-color: #81D4FA;
+    --secondary-color: #4FC3F7;
+    --text-color: #E1F5FE;
+    --bg-color: #01579B;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --heading-color: #81D4FA;
+    --card-bg-color: #0277BD;
+    --card-border-color: #4FC3F7;
+    --gallery-frame-border: #03A9F4;
+    --gallery-frame-border-light: #81D4FA;
+    --glow-color: rgba(3, 169, 244, 0.58);
+}
+
+
+/* Raindrop animation */
+.raindrop {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: #2196F3;
+    border-radius: 50%;
+    animation: rain 3s linear infinite;
+  }
+  
+  @keyframes rain {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  
+  [data-theme="monsoon-light"] .header-background {
+    background-image: url('images/monsoon-header.jpg');
+}
+[data-theme="monsoon-dark"] .header-background {
+    background-image: url('images/monsoon-header.jpg');
+}
+
+/* Autumn */
+/* Autumn Light */
+[data-theme="autumn-light"] {
+    --header-color: #ff6f437d;
+    --primary-color: #FF7043;
+    --secondary-color: #FF8A65;
+    --text-color: #BF360C;
+    --bg-color: #FFE4B5;
+    --shadow-color: rgba(255, 112, 67, 0.1);
+    --heading-color: #D84315;
+    --card-bg-color: #ffffff;
+    --card-border-color: #FFCCBC;
+    --gallery-frame-border: #FF7043;
+    --gallery-frame-border-light: #FF8A65;
+    --glow-color: rgba(255, 112, 67, 0.61);
+}
+
+/* Autumn Dark */
+[data-theme="autumn-dark"] {
+    --header-color: #ff89657d;
+    --primary-color: #FF8A65;
+    --secondary-color: #D84315;
+    --text-color: #FBE9E7;
+    --bg-color: #BF360C;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --heading-color: #FF7043;
+    --card-bg-color: #D84315;
+    --card-border-color: #FF7043;
+    --gallery-frame-border: #FF8A65;
+    --gallery-frame-border-light: #FFCCBC;
+    --glow-color: rgba(255, 102, 50, 0.58);
+}
+
+
+.leaf {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: orange;
+    animation: fallLeaves 8s linear infinite;
+  }
+
+  
+  
+  @keyframes fallLeaves {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+    }
+  }
+
+[data-theme="autumn-light"] .header-background {
+    background-image: url('images/autumn-header.jpg');
+}
+[data-theme="autumn-dark"] .header-background {
+    background-image: url('images/autumn-header.jpg');
+}
+
+/* Winter */
+/* Winter Light */
+[data-theme="winter-light"] {
+    --header-color: #0289d185;
+    --primary-color: #0288D1;
+    --secondary-color: #81d4fa63;
+    --text-color: #01579B;
+    --bg-color: #E0F7FA;
+    --shadow-color: rgba(2, 136, 209, 0.1);
+    --heading-color: #0277BD;
+    --card-bg-color: #ffffff;
+    --card-border-color: #B3E5FC;
+    --gallery-frame-border: #4FC3F7;
+    --gallery-frame-border-light: #B3E5FC;
+    --glow-color: rgba(2, 136, 209, 0.61);
+}
+
+/* Winter Dark */
+[data-theme="winter-dark"] {
+    --header-color: #007ab38d;
+    --primary-color: #81D4FA;
+    --secondary-color: #4FC3F7;
+    --text-color: #E1F5FE;
+    --bg-color: #01579B;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --heading-color: #81D4FA;
+    --card-bg-color: #0277BD;
+    --card-border-color: #4FC3F7;
+    --gallery-frame-border: #03A9F4;
+    --gallery-frame-border-light: #81D4FA;
+    --glow-color: rgba(3, 169, 244, 0.58);
+}
+
+
+.snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    animation: snowfall 8s linear infinite;
+  }
+  
+  @keyframes snowfall {
+    0% {
+      transform: translateY(-100px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0.5;
+    }
+  }
+  
+  [data-theme="winter-light"] .header-background {
+    background-image: url('images/winter-header.jpg');
+}
+[data-theme="winter-dark"] .header-background {
+    background-image: url('images/winter-header.jpg');
+}
+
+/* Durga Puja */
+/* Durga Puja Light */
+[data-theme="durga-puja-light"] {
+    --header-color: #ffe8e182;
+    --primary-color: #bf360c;
+    --secondary-color: #e65100;
+    --text-color: #4E342E;
+    --bg-color: #FFF3E0;
+    --shadow-color: rgba(191, 54, 12, 0.1);
+    --heading-color: #D84315;
+    --card-bg-color: #ffffff;
+    --card-border-color: #FFCCBC;
+    --gallery-frame-border: #BF360C;
+    --gallery-frame-border-light: #FF8A65;
+    --glow-color: rgba(191, 54, 12, 0.61);
+}
+
+/* Durga Puja Dark */
+[data-theme="durga-puja-dark"] {
+    --header-color: #ff6f4375;
+    --primary-color: #ff6f43;
+    --secondary-color: #D84315;
+    --text-color: #ffe7e7;
+    --bg-color: #340d01;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --heading-color: #ff4309;
+    --card-bg-color: #D84315;
+    --card-border-color: #FF7043;
+    --gallery-frame-border: #FF8A65;
+    --gallery-frame-border-light: #FFCCBC;
+    --glow-color: rgba(255, 112, 67, 0.58);
+}
+
+
+[data-theme="durga-puja-light"] .header-background {
+    background-image: url('images/durga-puja-header.jpg');
+}
+[data-theme="durga-puja-dark"] .header-background {
+    background-image: url('images/durga-puja-header.jpg');
+}
+
+/* Diwali */
+/* Diwali Light */
+[data-theme="diwali-light"] {
+    --header-color: #ffa20076;
+    --primary-color: #FF8F00;
+    --secondary-color: #FFC107;
+    --text-color: #E65100;
+    --bg-color: #FFFDE7;
+    --shadow-color: rgba(255, 143, 0, 0.1);
+    --heading-color: #FFA000;
+    --card-bg-color: #ffffff;
+    --card-border-color: #FFD54F;
+    --gallery-frame-border: #FF8F00;
+    --gallery-frame-border-light: #FFC107;
+    --glow-color: rgba(255, 143, 0, 0.61);
+}
+
+/* Diwali Dark */
+[data-theme="diwali-dark"] {
+    --header-color: #ff910087;
+    --primary-color: #FFA000;
+    --secondary-color: #FF8F00;
+    --text-color: #FFF3E0;
+    --bg-color: #E65100;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --heading-color: #FFC107;
+    --card-bg-color: #FF6F00;
+    --card-border-color: #FF8F00;
+    --gallery-frame-border: #FFC107;
+    --gallery-frame-border-light: #FFD54F;
+    --glow-color: rgba(255, 145, 0, 0.58);
+}
+
+
+.firework {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, blue, green, orange, yellow, red);
+    
+    border-radius: 50%;
+    animation: firework 5s ease-out infinite;
+  }
+  
+  @keyframes firework {
+    0% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+  [data-theme="diwali-light"] .header-background {
+    background-image: url('images/diwali-header.jpg');
+}
+[data-theme="diwali-dark"] .header-background {
+    background-image: url('images/diwali-header.jpg');
+}
+
 body {
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--primary-color);
     transition: all 0.3s ease;
 }
 
@@ -121,7 +533,7 @@ h2 {
     height: 200%;
     background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
     opacity: 0;
-    animation: glowPulse 8s infinite;
+    animation: glowPulse 4s infinite;
     pointer-events: none;
 }
 
@@ -145,7 +557,7 @@ h2 {
 .internship-card:hover::before,
 .skill-card:hover::before,
 .achievement-card:hover::before {
-    animation: glowPulse 8s infinite;
+    animation: glowPulse 2s infinite;
 }
 
 .academic-card h3,
@@ -175,24 +587,25 @@ h2 {
     box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-.theme-switch-wrapper { 
+.theme-switch-wrapper {
     display: flex;
     align-items: center;
     position: fixed;
-    top: 10px;  /* Raised closer to the top */
-    right: 10px; /* Moved closer to the right */
+    top: 20px;
+    right: 20px;
     z-index: 100;
     background: rgba(255, 255, 255, 0.1);
-    padding: 6px;  /* Reduced padding */
-    border-radius: 15px;
-    box-shadow: 0 3px 5px var(--shadow-color);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px var(--shadow-color);
 }
 
 .theme-switch {
     display: inline-block;
-    height: 16px;  /* Further reduced from 20px */
+    height: 24px;
     position: relative;
-    width: 32px;  /* Further reduced from 40px */
+    width: 48px;
 }
 
 .theme-switch input {
@@ -208,18 +621,18 @@ h2 {
     right: 0;
     top: 0;
     transition: .4s;
-    border-radius: 16px;  /* Adjusted for smaller size */
+    border-radius: 24px;
 }
 
 .slider:before {
     background-color: #fff;
     bottom: 2px;
     content: "";
-    height: 12px;  /* Further reduced from 16px */
+    height: 20px;
     left: 2px;
     position: absolute;
     transition: .4s;
-    width: 12px;  /* Further reduced from 16px */
+    width: 20px;
     border-radius: 50%;
     box-shadow: 0 2px 4px var(--shadow-color);
 }
@@ -229,7 +642,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-    transform: translateX(16px);  /* Adjusted for smaller width */
+    transform: translateX(24px);
 }
 
 /* Sun and Moon Icon Styling */
@@ -237,33 +650,33 @@ input:checked + .slider:before {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 10px;  /* Further reduced from 14px */
-    height: 10px;  /* Further reduced from 14px */
+    width: 16px;
+    height: 16px;
     color: #fff;
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-/* Adjusted icon sizes */
+/* Style the sun and moon icons */
 .theme-switch-wrapper .fa-sun, 
 .theme-switch-wrapper .fa-moon {
-    margin-left: -20px;
-    margin-right: 6px;
-    font-size: 0.9rem;  /* Further reduced font size */
+    margin-left: -30px;
+    margin-right: 10px;
+    font-size: 1.2rem;
     color: var(--text-color);
     transition: color 0.3s ease;
 }
 
 .slider .fa-sun {
-    left: 3px;  /* Adjusted positioning */
+    left: 6px;
     color: #ffd700;
-    text-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
 
 .slider .fa-moon {
-    right: 3px;  /* Adjusted positioning */
+    right: 6px;
     color: #c0c0c0;
-    text-shadow: 0 0 6px rgba(192, 192, 192, 0.7);
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.7);
 }
 
 input:checked + .slider .fa-sun {
@@ -281,7 +694,6 @@ input:not(:checked) + .slider .fa-sun {
 input:not(:checked) + .slider .fa-moon {
     opacity: 0;
 }
-
 
 /* Glossy effect for the switch */
 .slider::after {
