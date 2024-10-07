@@ -32,40 +32,32 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 100vw;
             height: 88vh;
-            z-index: -4; /* Ensure it sits behind the content */
+            z-index: -4;
             background-size: cover;
             background-position: center;
-            opacity: 0.8; /* Low opacity to make the image subtle */
+            opacity: 0.8;
         }
-
-        /* Media Query for tablets (768px to 1024px) */
-@media (max-width: 1024px) {
-    .header-background {
-        height: 102vh; /* Adjust height for tablets */
-    }
-}
-
-/* Media Query for mobile devices (max-width: 768px) */
-@media (max-width: 768px) {
-    .header-background {
-        height: 85vh; /* Reduce height for mobile phones */
-    }
-}
-
-/* Media Query for very small devices (max-width: 480px) */
-@media (max-width: 480px) {
-    .header-background {
-        height: 75vh; /* Further reduce height for small screens */
-    }
-}
-
-@media (max-width: 400px) {
-    .header-background {
-        height: 78vh; /* Further reduce height for small screens */
-    }
-}
+        
+        /* For mobile devices (max-width: 768px) */
+        @media (max-width: 768px) {
+            .header-background {
+                background-size: contain; /* Adjusts the image size */
+                background-position: top; /* Aligns the image to the top */
+                height: 85vh; /* Reduce the height for smaller screens */
+            }
+        }
+        
+        /* For very small devices (max-width: 480px) */
+        @media (max-width: 480px) {
+            .header-background {
+                background-size: contain;
+                background-position: top;
+                height: 75vh; /* Further reduce the height for very small screens */
+            }
+        }
+        
 
    h1{
     color: var(--text-color);
