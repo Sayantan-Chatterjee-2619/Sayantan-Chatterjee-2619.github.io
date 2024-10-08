@@ -551,12 +551,12 @@
 
     /* Left Dhunuchi Holder */
 .dhunuchi-holder.left {
-    bottom: 5%;
+    bottom: 2%;
 }
 
 /* Right Dhunuchi Holder */
 .dhunuchi-holder.right {
-    bottom: 5%;
+    bottom: 2%;
     
 }
 
@@ -595,7 +595,7 @@
 
     .dhunuchi-holder.left,
     .dhunuchi-holder.right {
-        bottom: 10%;
+        bottom: 5%;
     }
     .dhunuchi-holder.left{
         left: 7%;
