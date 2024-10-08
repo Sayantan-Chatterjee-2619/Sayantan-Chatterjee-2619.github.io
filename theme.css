@@ -595,13 +595,13 @@
 
     .dhunuchi-holder.left,
     .dhunuchi-holder.right {
-        bottom: 30%;
+        bottom: 40%;
     }
     .dhunuchi-holder.left{
-        left: 10%;
+        left: 7%;
     }
     .dhunuchi-holder.right {
-        right: 10%;
+        right: 7%;
     }
 
     .dhunuchi-stand {
@@ -611,13 +611,13 @@
 
     .dhunuchi-stand.left,
     .dhunuchi-stand.right {
-        bottom: 35%;
+        bottom: 32%;
     }
     .dhunuchi-stand.left{
-        left: 10%;
+        left: 7%;
     }
     .dhunuchi-stand.right {
-        right: 10%;
+        right: 7%;
     }
 
     .dhunuchi-smoke {
