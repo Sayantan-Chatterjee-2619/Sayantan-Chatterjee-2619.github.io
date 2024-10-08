@@ -423,6 +423,270 @@
     --glow-color: rgba(255, 112, 67, 0.58);
 }
 
+/* Dhunuchi Holder */
+.dhunuchi-holder {
+    position: absolute;
+    width: 70px;
+    height: 40px;
+    bottom: 0;
+    background: linear-gradient(135deg, #8b4513, #a0522d);
+    border-radius: 100% 100% 10% 10%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: rotate(180deg);
+}
+
+/* Left Dhunuchi Holder */
+.dhunuchi-holder.left {
+    bottom: 15%;
+    left: 5%;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+/* Right Dhunuchi Holder */
+.dhunuchi-holder.right {
+    bottom: 15%;
+    right: 5%;
+    transform: translateX(50%) rotate(180deg);
+}
+
+/* Dhunuchi Stand */
+.dhunuchi-stand {
+    position: absolute;
+    width: 20px;
+    height: 22px;
+    bottom: 0;
+    background: linear-gradient(135deg, #5c4033, #3b2f2f);
+    border-radius: 10%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Left Dhunuchi Stand */
+.dhunuchi-stand.left {
+    bottom: 12%;
+    left: 5%;
+    transform: translateX(-50%);
+}
+
+/* Right Dhunuchi Stand */
+.dhunuchi-stand.right {
+    bottom: 12%;
+    right: 5%;
+    transform: translateX(50%);
+}
+
+/* Dhunuchi Smoke */
+.dhunuchi-smoke {
+    position: absolute;
+    width: 30px;
+    height: 70px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    filter: blur(10px);
+    border-radius: 20% 20% 20% 20%;
+    animation: riseSmoke 10s linear infinite;
+    opacity: 0;
+    bottom: 0; /* Ensure the smoke starts from the top of the holder */
+    z-index: -100;
+}
+
+/* Smoke should rise upwards */
+@keyframes riseSmoke {
+    0% {
+            transform: translateY(12vh) translateX(-2vh) scale(1.0);
+            opacity: 0.8;
+        }
+        25% {
+            transform: translateY(25vh) translateX(-1vh) scale(1.2);
+            opacity: 0.6;
+            width: 30px;
+        }
+        50% {
+            transform: translateY(50vh) translateX(1vh) scale(1.5);
+            opacity: 0.4;
+        }
+        75% {
+            transform: translateY(75vh) translateX(-2vh) scale(1.8);
+            opacity: 0.2;
+        }
+        100% {
+            transform: translateY(100vh) translateX(-5vh) scale(2.0);
+            opacity: 0;
+            width: 50px;
+        }
+}
+
+/* Torana (String for the mango leaves) */
+.torana-string {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #8b4513; /* Brown string color */
+    z-index: 10;
+}
+
+/* Mango Leaf */
+.mango-leaf {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #2e8b57 20%, #006400 80%);
+    border-radius: 0 35px;
+    position: absolute;
+    transform: rotate(45deg);
+    animation: gentleSwing 4s ease-in-out infinite;
+}
+
+
+
+@keyframes gentleSwing {
+    0%, 100% { transform: rotate(45deg); }
+    50% { transform: rotate(55deg); }
+}
+
+@media screen and (max-width: 768px) {
+    .dhunuchi-holder {
+        width: 60px;
+        height: 35px;
+    }
+
+    /* Left Dhunuchi Holder */
+.dhunuchi-holder.left {
+    bottom: 18%;
+}
+
+/* Right Dhunuchi Holder */
+.dhunuchi-holder.right {
+    bottom: 18%;
+    
+}
+
+    .dhunuchi-stand {
+        width: 18px;
+        height: 20px;
+    }
+
+    /* Left Dhunuchi Stand */
+.dhunuchi-stand.left {
+    bottom: 15%;
+}
+
+/* Right Dhunuchi Stand */
+.dhunuchi-stand.right {
+    bottom: 15%;
+}
+
+    .dhunuchi-smoke {
+        width: 25px;
+        height: 40px;
+    }
+
+    .mango-leaf {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* For screens smaller than 480px (typical mobile size) */
+@media screen and (max-width: 480px) {
+    .dhunuchi-holder {
+        width: 40px;
+        height: 20px;
+    }
+
+    .dhunuchi-holder.left,
+    .dhunuchi-holder.right {
+        bottom: 27%;
+    }
+    .dhunuchi-holder.left{
+        left: 6%;
+    }
+    .dhunuchi-holder.right {
+        right: 6%;
+    }
+
+    .dhunuchi-stand {
+        width: 10px;
+        height: 13px;
+    }
+
+    .dhunuchi-stand.left,
+    .dhunuchi-stand.right {
+        bottom: 25%;
+    }
+    .dhunuchi-stand.left{
+        left: 6%;
+    }
+    .dhunuchi-stand.right {
+        right: 6%;
+    }
+
+    .dhunuchi-smoke {
+        width: 20px;
+        height: 35px;
+    }
+
+    .mango-leaf {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Adjust the smoke animation for smaller screens */
+    @keyframes riseSmoke {
+        0% {
+            transform: translateY(10vh) translateX(-2vh) scale(0.5);
+            opacity: 0.3;
+        }
+        25% {
+            transform: translateY(25vh) translateX(-1vh) scale(0.8);
+            opacity: 0.8;
+        }
+        50% {
+            transform: translateY(40vh) translateX(1vh) scale(1.0);
+            opacity: 0.8;
+        }
+        75% {
+            transform: translateY(55vh) translateX(-2vh) scale(1.2);
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(80vh) translateX(-5vh) scale(1.5);
+            opacity: 0;
+        }
+    }
+}
+
+/* For very small screens (e.g., older smartphones) */
+@media screen and (max-width: 320px) {
+    .dhunuchi-holder {
+        width: 30px;
+        height: 15px;
+    }
+
+    .dhunuchi-holder.left,
+    .dhunuchi-holder.right {
+        bottom: 24%;
+    }
+
+    .dhunuchi-stand {
+        width: 10px;
+        height: 13px;
+    }
+
+    .dhunuchi-stand.left,
+    .dhunuchi-stand.right {
+        bottom: 22%;
+    }
+
+    .dhunuchi-smoke {
+        width: 15px;
+        height: 30px;
+    }
+
+    .mango-leaf {
+        width: 15px;
+        height: 15px;
+    }
+}
 
 [data-theme="durga-puja-light"] .header-background {
     background-image: url('images/durga-puja-header.jpg');

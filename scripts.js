@@ -343,7 +343,99 @@ function addAnimationsForTheme(theme) {
         }
     }
 
-    // Clear any previous animations before adding new ones
+    function createDhunuchiWithSmoke() {
+        const animationContainer = document.querySelector('.theme-animations');
+    
+        // Create left and right Dhunuchi containers
+        const dhunuchiLeftContainer = document.createElement('div');
+        dhunuchiLeftContainer.classList.add('dhunuchi-container', 'left');
+        
+        const dhunuchiRightContainer = document.createElement('div');
+        dhunuchiRightContainer.classList.add('dhunuchi-container', 'right');
+    
+        // Create left Dhunuchi holder and stand
+        const dhunuchiHolderLeft = document.createElement('div');
+        dhunuchiHolderLeft.classList.add('dhunuchi-holder', 'left');
+        
+        const dhunuchiStandLeft = document.createElement('div');
+        dhunuchiStandLeft.classList.add('dhunuchi-stand', 'left');
+    
+        // Create right Dhunuchi holder and stand
+        const dhunuchiHolderRight = document.createElement('div');
+        dhunuchiHolderRight.classList.add('dhunuchi-holder', 'right');
+        
+        const dhunuchiStandRight = document.createElement('div');
+        dhunuchiStandRight.classList.add('dhunuchi-stand', 'right');
+    
+        // Append holders and stands to containers
+        dhunuchiLeftContainer.appendChild(dhunuchiHolderLeft);
+        dhunuchiLeftContainer.appendChild(dhunuchiStandLeft);
+        
+        dhunuchiRightContainer.appendChild(dhunuchiHolderRight);
+        dhunuchiRightContainer.appendChild(dhunuchiStandRight);
+    
+        // Create multiple smoke elements for both holders
+        for (let i = 0; i < 20; i++) {
+            const smokeLeft = document.createElement('div');
+            smokeLeft.classList.add('dhunuchi-smoke');
+            
+            // Position smoke inside the left dhunuchi holder
+            smokeLeft.style.position = 'absolute';
+            smokeLeft.style.top = '-50px'; // Adjust the smoke position above the holder
+            smokeLeft.style.left = '50%';  // Center smoke horizontally inside holder
+            smokeLeft.style.transform = 'translateX(-50%)';
+            smokeLeft.style.animationDelay = `${Math.random() * 10}s`;
+    
+            const smokeRight = document.createElement('div');
+            smokeRight.classList.add('dhunuchi-smoke');
+            
+            // Position smoke inside the right dhunuchi holder
+            smokeRight.style.position = 'absolute';
+            smokeRight.style.top = '-50px'; // Adjust the smoke position above the holder
+            smokeRight.style.left = '50%';  // Center smoke horizontally inside holder
+            smokeRight.style.transform = 'translateX(-50%)';
+            smokeRight.style.animationDelay = `${Math.random() * 10}s`;
+    
+            // Append smoke to the respective holders
+            dhunuchiHolderLeft.appendChild(smokeLeft);
+            dhunuchiHolderRight.appendChild(smokeRight);
+        }
+    
+        // Append both dhunuchi containers to the animation container
+        animationContainer.appendChild(dhunuchiLeftContainer);
+        animationContainer.appendChild(dhunuchiRightContainer);
+    }
+    
+    function addToranaWithMangoLeaves() {
+        const body = document.querySelector('body');
+    
+        // Create Torana (String)
+        const toranaString = document.createElement('div');
+        toranaString.classList.add('torana-string');
+        body.appendChild(toranaString);
+    
+        // Create mango leaves and attach to the torana
+        for (let i = 0; i < 10; i++) {
+            const mangoLeaf = document.createElement('div');
+            mangoLeaf.classList.add('mango-leaf');
+            
+            const position = (i * 10) + 5;
+            mangoLeaf.style.left = `${position}%`;
+            mangoLeaf.style.top = '10px';
+
+            // Add slight delay to each leaf's animation for a more natural look
+            mangoLeaf.style.animationDelay = `${i * 0.2}s`;
+
+            body.appendChild(mangoLeaf);
+        }
+    }
+    
+    
+    
+    
+
+
+    // Add animations based on the theme
     if (theme.includes('spring')) {
         createSideAnimation('petal', 10, 'left'); // 10 petals on the left
         createSideAnimation('petal', 10, 'right'); // 10 petals on the right
@@ -361,9 +453,13 @@ function addAnimationsForTheme(theme) {
     } else if (theme.includes('winter')) {
         createSideAnimation('snowflake', 20, 'left'); // 20 snowflakes on the left
         createSideAnimation('snowflake', 20, 'right'); // 20 snowflakes on the right
-    }  else if (theme.includes('diwali')) {
+    } else if (theme.includes('diwali')) {
         createSideAnimation('firework', 10, 'left'); // 10 fireworks on the left
         createSideAnimation('firework', 10, 'right'); // 10 fireworks on the right
+    } else if (theme.includes('durga-puja')) {
+        // Call function to create dhunuchi and smoke animation for Durga Puja
+        createDhunuchiWithSmoke();
+        addToranaWithMangoLeaves();
     }
 }
 
@@ -372,8 +468,6 @@ const currenttheme = document.documentElement.getAttribute('data-theme');
 addAnimationsForTheme(currenttheme);
 
 // If you're switching themes dynamically, ensure to call `addAnimationsForTheme(newTheme)` when the theme changes
-
-// If theme is switched manually (dark/light toggle or system preference)
 toggleSwitch.addEventListener('change', () => {
     const newTheme = document.documentElement.getAttribute('data-theme');
     addAnimationsForTheme(newTheme); // Update the animations
@@ -384,4 +478,5 @@ window.addEventListener('DOMContentLoaded', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     addAnimationsForTheme(currentTheme);
 });
+
 

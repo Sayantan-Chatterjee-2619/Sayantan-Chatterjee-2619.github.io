@@ -32,7 +32,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
+            width: 99vw;
             height: 88vh;
             z-index: -4;
             background-size: cover;
