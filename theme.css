@@ -437,14 +437,14 @@
 
 /* Left Dhunuchi Holder */
 .dhunuchi-holder.left {
-    bottom: 5%;
+    bottom: 3%;
     left: 5%;
     transform: translateX(-50%) rotate(180deg);
 }
 
 /* Right Dhunuchi Holder */
 .dhunuchi-holder.right {
-    bottom: 5%;
+    bottom: 3%;
     right: 5%;
     transform: translateX(50%) rotate(180deg);
 }
@@ -551,12 +551,12 @@
 
     /* Left Dhunuchi Holder */
 .dhunuchi-holder.left {
-    bottom: 2%;
+    bottom: 3%;
 }
 
 /* Right Dhunuchi Holder */
 .dhunuchi-holder.right {
-    bottom: 2%;
+    bottom: 3%;
     
 }
 
@@ -665,7 +665,7 @@
 
     .dhunuchi-holder.left,
     .dhunuchi-holder.right {
-        bottom: 5%;
+        bottom: 3%;
     }
 
     .dhunuchi-stand {
