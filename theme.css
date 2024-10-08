@@ -595,7 +595,7 @@
 
     .dhunuchi-holder.left,
     .dhunuchi-holder.right {
-        bottom: 36%;
+        bottom: 0;
     }
     .dhunuchi-holder.left{
         left: 7%;
@@ -611,7 +611,7 @@
 
     .dhunuchi-stand.left,
     .dhunuchi-stand.right {
-        bottom: 34%;
+        bottom: 0;
     }
     .dhunuchi-stand.left{
         left: 7%;
