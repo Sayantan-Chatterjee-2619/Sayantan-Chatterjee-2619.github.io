@@ -54,7 +54,7 @@
             .header-background {
                 background-size: contain;
                 background-position: top;
-                height: 62vh; /* Further reduce the height for very small screens */
+                height: 65vh; /* Further reduce the height for very small screens */
             }
         }
         
