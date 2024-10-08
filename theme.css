@@ -606,7 +606,7 @@
 
     .dhunuchi-stand {
         width: 10px;
-        height: 13px;
+        height: 14px;
     }
 
     .dhunuchi-stand.left,
@@ -628,7 +628,7 @@
     .mango-leaf {
         width: 20px;
         height: 20px;
-        left: 7%;
+        left: 5%;
     }
 
     /* Adjust the smoke animation for smaller screens */
@@ -650,7 +650,7 @@
             opacity: 0.8;
         }
         100% {
-            transform: translateY(80vh) translateX(-5vh) scale(1.5);
+            transform: translateY(80vh) translateX(-3vh) scale(1.5);
             opacity: 0;
         }
     }
