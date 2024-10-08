@@ -47,7 +47,7 @@
             .header-background {
                 background-size: contain; /* Adjusts the image size */
                 background-position: top; /* Aligns the image to the top */
-                height: 80%; /* Reduce the height for smaller screens */
+                height: 100%; /* Reduce the height for smaller screens */
             }
         }
         
@@ -56,7 +56,7 @@
             .header-background {
                 background-size: contain;
                 background-position: top;
-                height: 60%; /* Further reduce the height for very small screens */
+                height: 100%; /* Further reduce the height for very small screens */
             }
         }
         
