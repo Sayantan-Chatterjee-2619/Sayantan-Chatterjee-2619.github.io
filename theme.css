@@ -437,14 +437,14 @@
 
 /* Left Dhunuchi Holder */
 .dhunuchi-holder.left {
-    bottom: 15%;
+    bottom: 5%;
     left: 5%;
     transform: translateX(-50%) rotate(180deg);
 }
 
 /* Right Dhunuchi Holder */
 .dhunuchi-holder.right {
-    bottom: 15%;
+    bottom: 5%;
     right: 5%;
     transform: translateX(50%) rotate(180deg);
 }
@@ -462,14 +462,14 @@
 
 /* Left Dhunuchi Stand */
 .dhunuchi-stand.left {
-    bottom: 12%;
+    bottom: 0;
     left: 5%;
     transform: translateX(-50%);
 }
 
 /* Right Dhunuchi Stand */
 .dhunuchi-stand.right {
-    bottom: 12%;
+    bottom: 0;
     right: 5%;
     transform: translateX(50%);
 }
@@ -551,12 +551,12 @@
 
     /* Left Dhunuchi Holder */
 .dhunuchi-holder.left {
-    bottom: 18%;
+    bottom: 5%;
 }
 
 /* Right Dhunuchi Holder */
 .dhunuchi-holder.right {
-    bottom: 18%;
+    bottom: 5%;
     
 }
 
@@ -567,12 +567,12 @@
 
     /* Left Dhunuchi Stand */
 .dhunuchi-stand.left {
-    bottom: 15%;
+    bottom: 0;
 }
 
 /* Right Dhunuchi Stand */
 .dhunuchi-stand.right {
-    bottom: 15%;
+    bottom: 0;
 }
 
     .dhunuchi-smoke {
@@ -665,7 +665,7 @@
 
     .dhunuchi-holder.left,
     .dhunuchi-holder.right {
-        bottom: 24%;
+        bottom: 5%;
     }
 
     .dhunuchi-stand {
@@ -675,7 +675,7 @@
 
     .dhunuchi-stand.left,
     .dhunuchi-stand.right {
-        bottom: 22%;
+        bottom: 0;
     }
 
     .dhunuchi-smoke {
