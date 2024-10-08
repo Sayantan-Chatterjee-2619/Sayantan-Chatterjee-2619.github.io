@@ -595,7 +595,7 @@
 
     .dhunuchi-holder.left,
     .dhunuchi-holder.right {
-        bottom: 37%;
+        bottom: 36%;
     }
     .dhunuchi-holder.left{
         left: 7%;
@@ -611,7 +611,7 @@
 
     .dhunuchi-stand.left,
     .dhunuchi-stand.right {
-        bottom: 33%;
+        bottom: 34%;
     }
     .dhunuchi-stand.left{
         left: 7%;
@@ -628,7 +628,7 @@
     .mango-leaf {
         width: 20px;
         height: 20px;
-        left: 10%;
+        left: 7%;
     }
 
     /* Adjust the smoke animation for smaller screens */
