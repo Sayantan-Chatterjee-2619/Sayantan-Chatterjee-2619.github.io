@@ -927,7 +927,7 @@ input:checked + .slider:before {
 .theme-switch-wrapper .fa-moon {
     margin-left: -30px;
     margin-right: 10px;
-    font-size: 1.0rem;
+    font-size: 1.3rem;
     color: var(--text-color);
     transition: color 0.3s ease;
 }
