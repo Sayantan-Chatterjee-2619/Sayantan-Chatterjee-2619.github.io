@@ -529,7 +529,7 @@
 .mango-leaf {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #6ec007 30%, #00610e 70%);
+    background: linear-gradient(135deg, #6ec007 20%, #00610e 80%);
     border-radius: 0 35px;
     position: absolute;
     transform: rotate(45deg);
