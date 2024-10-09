@@ -76,16 +76,43 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
         const card = document.querySelector('.card');
         
         // Function to toggle the flip class
-        const toggleFlip = () => {
-            card.classList.toggle('flip');
-        };
-        
-        // Add event listeners for both click (desktop) and touchstart (mobile)
-        card.addEventListener('click', toggleFlip);
-        card.addEventListener('touchstart', function(event) {
-            // Prevent touch from triggering both events (touch + click)
-            event.preventDefault();
+const toggleFlip = () => {
+    card.classList.toggle('flip');
+};
+
+// Variables to store the starting point of the swipe
+let startX, startY, endX, endY;
+
+// Function to detect the swipe direction
+const handleSwipe = () => {
+    const diffX = endX - startX;
+    const diffY = endY - startY;
+
+    // Detect if the swipe was more horizontal than vertical
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // If swipe distance is significant enough
+        if (Math.abs(diffX) > 50) {
             toggleFlip();
-        });
-    });
+        }
+    }
+};
+
+// Add event listeners for both click (desktop) and swipe (mobile)
+card.addEventListener('click', toggleFlip);
+
+// For touch devices, detect swipe gestures
+card.addEventListener('touchstart', function(event) {
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+}, false);
+
+card.addEventListener('touchmove', function(event) {
+    endX = event.touches[0].clientX;
+    endY = event.touches[0].clientY;
+}, false);
+
+card.addEventListener('touchend', function() {
+    handleSwipe();
+}, false);
+
 
