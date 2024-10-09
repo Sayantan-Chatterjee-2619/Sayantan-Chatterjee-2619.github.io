@@ -90,11 +90,11 @@ h2 {
 
 ul {
     list-style-type: disc; /* Ensures bullets are shown */
-    margin-left: 20px; /* Adjusts the indentation */
+    margin-left: 5px; /* Adjusts the indentation */
 }
 
 li {
-    margin-bottom: 5px; /* Adds space between list items */
+    margin-bottom: 10px; /* Adds space between list items */
 }
 
 .skills {
