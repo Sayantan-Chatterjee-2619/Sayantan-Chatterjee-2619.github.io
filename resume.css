@@ -90,7 +90,7 @@ h2 {
 
 ul {
     list-style-type: disc; /* Ensures bullets are shown */
-    margin-left: 5px; /* Adjusts the indentation */
+    margin-left: 2px; /* Adjusts the indentation */
 }
 
 li {
