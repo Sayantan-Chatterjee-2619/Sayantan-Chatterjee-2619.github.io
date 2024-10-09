@@ -75,7 +75,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     document.addEventListener("DOMContentLoaded", function() {
         const card = document.querySelector('.card');
         
-        // Function to toggle the flip class
+      // Function to toggle the flip class
 const toggleFlip = () => {
     card.classList.toggle('flip');
 };
@@ -115,4 +115,7 @@ card.addEventListener('touchend', function() {
     handleSwipe();
 }, false);
 
-
+event.preventDefault();
+            toggleFlip();
+        });
+    });
