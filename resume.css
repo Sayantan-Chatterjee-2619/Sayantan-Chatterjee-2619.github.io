@@ -225,7 +225,7 @@ li {
 @media (max-width: 480px) {
     .card {
         width: 90vw;
-        height: 80vh;
+        height: 85vh;
         border-radius: 0;
     }
     
