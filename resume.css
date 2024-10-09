@@ -89,9 +89,14 @@ h2 {
 
 
 ul {
-    list-style-type: none;
-    padding-left: 0;
+    list-style-type: disc; /* Ensures bullets are shown */
+    margin-left: 20px; /* Adjusts the indentation */
 }
+
+li {
+    margin-bottom: 5px; /* Adds space between list items */
+}
+
 .skills {
     display: flex;
     align-items: center;
