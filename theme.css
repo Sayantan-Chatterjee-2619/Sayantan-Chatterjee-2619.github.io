@@ -307,7 +307,8 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: orange;
+    background: linear-gradient(135deg, #d98c3b 20%, #8b4513 80%);
+    border-radius: 0 35px;
     animation: fallLeaves 8s linear infinite;
   }
 
