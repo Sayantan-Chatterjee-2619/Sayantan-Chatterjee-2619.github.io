@@ -315,13 +315,20 @@
   
   
   @keyframes fallLeaves {
-    0% {
-      transform: translateY(-100px) rotate(0deg);
-    }
-    100% {
-      transform: translateY(100vh) rotate(360deg);
-    }
+  0% {
+    transform: translateX(0) translateY(-100px) rotate(0deg);
+    opacity: 1;
   }
+  50% {
+    transform: translateX(100px) translateY(50vh) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-200px) translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 
 [data-theme="autumn-light"] .header-background {
     background-image: url('images/autumn-header.jpg');
