@@ -475,8 +475,8 @@ function addAnimationsForTheme(theme) {
         createSideAnimation('raindrop', 20, 'left'); // 20 raindrops on the left
         createSideAnimation('raindrop', 20, 'right'); // 20 raindrops on the right
     } else if (theme.includes('autumn')) {
-        createSideAnimation('leaf', 15, 'left'); // 15 leaves on the left
-        createSideAnimation('leaf', 15, 'right'); // 15 leaves on the right
+        createSideAnimation('leaf', 10, 'left'); // 15 leaves on the left
+        createSideAnimation('leaf', 10, 'right'); // 15 leaves on the right
     } else if (theme.includes('winter')) {
         createSideAnimation('snowflake', 20, 'left'); // 20 snowflakes on the left
         createSideAnimation('snowflake', 20, 'right'); // 20 snowflakes on the right
