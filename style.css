@@ -80,39 +80,71 @@
     color: var(--text-color);
    }   
         
-        /* Profile Container */
-.profile-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 45px;
-    z-index: 2;
-}
-
-/* Profile Picture Styling */
-.profile-picture {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 80px;
-    color: var(--primary-color);
-    border: 5px solid #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    position: relative; /* Needed for absolute positioning of resume-link */
-    transition: transform 0.3s ease;
-    z-index: 2;
-}
-
-.profile-picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+       /* Profile Container */
+       .profile-picture-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .profile-picture {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s ease;
+        z-index: 2;
+      }
+      
+      .profile-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .loading-screen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        border-radius: 50%;
+        transition: opacity 0.5s ease;
+      }
+      
+      .loading-screen p {
+        margin-top: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+      
+      .spinner {
+        margin-top: 20px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
 
 /* Resume Link Styling */
 .resume-link {
@@ -123,23 +155,24 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    font-size: 1.0em; /* Increased for better visibility */
+    font-size: 1.0em;
     text-align: center;
-    border-radius: 50%; /* Ensure it fits within the circular profile picture */
-    opacity: 0; /* Hidden by default */
+    border-radius: 10%;
+    opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateY(20px); /* Slight transition from bottom */
+    transform: translateY(20px);
+    z-index: 4;
 }
 
 .resume-link a {
     color: white;
     text-decoration: none;
-    padding: 15px 30px; /* Adjusted for a better fit */
+    padding: 15px 30px;
     border: 2px solid white;
-    border-radius: 50px; /* Rounded corners for a clean look */
+    border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -151,42 +184,19 @@
     color: var(--primary-color);
 }
 
-.resume-link p{
+.resume-link p {
     color: var(--text-color);
 }
-
-/* Icon Styling within the Link */
-.resume-link i {
-    font-size: 2px;
-}
-
 
 /* Hover Effect for Profile Picture */
 .profile-picture:hover {
-    transform: scale(1.5); /* Slight zoom effect */
+    transform: scale(1.5);
 }
 
 .profile-picture:hover .resume-link {
-    opacity: 1; /* Show the link */
-    transform: translateY(0); /* Slide it into position */
+    opacity: 1;
+    transform: translateY(0);
 }
-
-.guide-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(-40px);
-    z-index: 1;
-}
-
-.guide-container h6{
-    color: var(--text-color);
-    opacity: 0;
-    animation: blinker 10s linear infinite ;
-
-}
-
-
 
 /* Header Text Animation */
 header h1 {
@@ -1421,4 +1431,9 @@ section {
 /* Smooth scrolling for a better user experience */
 html {
     scroll-behavior: smooth;
+    touch-action: manipulation;
 }
+
+input, select, textarea {
+    font-size: 16px;
+  }

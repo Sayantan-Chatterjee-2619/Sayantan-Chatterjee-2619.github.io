@@ -8,6 +8,31 @@ document.querySelectorAll('.side-nav a').forEach(anchor => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const img = document.querySelector('.profile-picture img');
+    const loadingScreen = document.querySelector('.loading-screen');
+  
+    function hideLoadingScreen() {
+      loadingScreen.style.opacity = '0';
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+      }, 4000); // Matches the transition duration in CSS
+    }
+  
+    if (img.complete) {
+      hideLoadingScreen();
+    } else {
+      img.onload = hideLoadingScreen;
+    }
+  
+    // Fallback in case the image fails to load
+    img.onerror = hideLoadingScreen;
+  
+    // Show loading screen immediately
+    loadingScreen.style.opacity = '1';
+    loadingScreen.style.display = 'flex';
+  });
+
 function toggleNav() {
     const sideNav = document.getElementById("sideNav");
     const currentWidth = window.getComputedStyle(sideNav).width;
@@ -317,6 +342,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function addAnimationsForTheme(theme) {
     const animationContainer = document.querySelector('.theme-animations');
+    if (!animationContainer) return; // Exit if container doesn't exist
+
     animationContainer.innerHTML = ''; // Clear any previous animations
 
     function createSideAnimation(className, count, side) {
@@ -478,5 +505,4 @@ window.addEventListener('DOMContentLoaded', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     addAnimationsForTheme(currentTheme);
 });
-
 
