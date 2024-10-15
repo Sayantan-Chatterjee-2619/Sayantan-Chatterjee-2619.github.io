@@ -63,21 +63,51 @@
 
    h1{
     color: var(--text-color);
+    text-shadow: 
+        0 0 5px var(--neon-glow-color),
+        0 0 10px var(--neon-glow-color),
+        0 0 20px var(--neon-glow-color),
+        0 0 40px var(--neon-glow-color);
    } 
    h2{
     color: var(--text-color);
+    text-shadow: 
+        0 0 5px var(--neon-glow-color),
+        0 0 10px var(--neon-glow-color),
+        0 0 20px var(--neon-glow-color),
+        0 0 40px var(--neon-glow-color);
    }
    .academic-card h3, .internship-card h3, .project-card h3, .skill-card h3, .achievement-card h3{
     color: var(--text-color);
+    text-shadow: 
+        0 0 5px var(--neon-glow-color),
+        0 0 10px var(--neon-glow-color),
+        0 0 20px var(--neon-glow-color),
+        0 0 40px var(--neon-glow-color);
    }
    h4{
     color: var(--text-color);
+    text-shadow: 
+        0 0 5px var(--neon-glow-color),
+        0 0 10px var(--neon-glow-color),
+        0 0 20px var(--neon-glow-color),
+        0 0 40px var(--neon-glow-color);
    }
    h5{
     color: var(--text-color);
+    text-shadow: 
+        0 0 5px var(--neon-glow-color),
+        0 0 10px var(--neon-glow-color),
+        0 0 20px var(--neon-glow-color),
+        0 0 40px var(--neon-glow-color);
    }
    p{
     color: var(--text-color);
+    text-shadow: 
+        0 0 5px var(--neon-glow-color),
+        0 0 10px var(--neon-glow-color),
+        0 0 20px var(--neon-glow-color),
+        0 0 40px var(--neon-glow-color);
    }   
         
        /* Profile Container */
