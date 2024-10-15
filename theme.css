@@ -1,60 +1,60 @@
 :root {
-    --primary-color: #4a90e2;
-    --secondary-color: #2c3e50;
-    --text-color: #001a4a;
-    --bg-color: #f0f4ff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --heading-color: #1e3a8a;
+    --primary-color: #2b6cd4;
+    --secondary-color: #1c2e40;
+    --text-color: #001133;
+    --bg-color: #e6eeff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --heading-color: #0d2456;
     --card-bg-color: #ffffff;
-    --card-border-color: #e0e0e0;
-    --gallery-frame-border: #ffc404;
-    --gallery-frame-border-light: #ffd95b;
-    --glow-color: rgba(0, 255, 51, 0.61); /* Glow color for light theme */
+    --card-border-color: #b3b3b3;
+    --gallery-frame-border: #e6a800;
+    --gallery-frame-border-light: #ffc61a;
+    --glow-color: rgba(0, 204, 41, 0.61);
 }
 
 [data-theme="dark"] {
-    --primary-color: #64b5f6;
-    --secondary-color: #34495e;
-    --text-color: #e0e0e0;
-    --bg-color: #1a2635;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-    --heading-color: #90caf9;
-    --card-bg-color: #2c3e50;
-    --card-border-color: #4a4a4a;
-    --gallery-frame-border: #3a3a3a;
-    --gallery-frame-border-light: #4a4a4a;
-    --glow-color: rgba(190, 0, 89, 0.58); /* Glow color for dark theme */
+    --primary-color: #4d9fff;
+    --secondary-color: #253545;
+    --text-color: #f0f0f0;
+    --bg-color: #0d1620;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #79b7ff;
+    --card-bg-color: #1c2e40;
+    --card-border-color: #5c5c5c;
+    --gallery-frame-border: #2d2d2d;
+    --gallery-frame-border-light: #3d3d3d;
+    --glow-color: rgba(255, 0, 119, 0.58);
 }
 
 /* Automatic dark mode based on system preference */
 @media (prefers-color-scheme: dark) {
     :root {
-        --primary-color: #64b5f6;
-        --secondary-color: #34495e;
-        --text-color: #e0e0e0;
-        --bg-color: #1a2635;
-        --shadow-color: rgba(255, 255, 255, 0.1);
-        --heading-color: #90caf9;
-        --card-bg-color: #2c3e50;
-        --card-border-color: #4a4a4a;
-        --gallery-frame-border: #3a3a3a;
-        --gallery-frame-border-light: #4a4a4a;
-        --glow-color: rgba(190, 0, 89, 0.58);
+        --primary-color: #4d9fff;
+    --secondary-color: #253545;
+    --text-color: #f0f0f0;
+    --bg-color: #0d1620;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #79b7ff;
+    --card-bg-color: #1c2e40;
+    --card-border-color: #5c5c5c;
+    --gallery-frame-border: #2d2d2d;
+    --gallery-frame-border-light: #3d3d3d;
+    --glow-color: rgba(255, 0, 119, 0.58);
     }
 
     /* Override for light theme when manually selected */
     [data-theme="light"] {
-        --primary-color: #4a90e2;
-        --secondary-color: #2c3e50;
-        --text-color: #001a4a;
-        --bg-color: #f0f4ff;
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --heading-color: #1e3a8a;
-        --card-bg-color: #ffffff;
-        --card-border-color: #e0e0e0;
-        --gallery-frame-border: #ffc404;
-        --gallery-frame-border-light: #ffd95b;
-        --glow-color: rgba(0, 255, 51, 0.61);
+        --primary-color: #2b6cd4;
+    --secondary-color: #1c2e40;
+    --text-color: #001133;
+    --bg-color: #e6eeff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --heading-color: #0d2456;
+    --card-bg-color: #ffffff;
+    --card-border-color: #b3b3b3;
+    --gallery-frame-border: #e6a800;
+    --gallery-frame-border-light: #ffc61a;
+    --glow-color: rgba(0, 204, 41, 0.61);
     }
 }
 
@@ -86,34 +86,34 @@
 /* Spring */
 /* Spring Light */
 [data-theme="spring-light"] {
-    --header-color: #4caf4f68;
-    --primary-color: #4CAF50;
-    --secondary-color: #8BC34A;
-    --text-color: #1B5E20;
-    --bg-color: #E0FFD1;
-    --shadow-color: rgba(0, 150, 0, 0.1);
-    --heading-color: #2E7D32;
+    --header-color: #2e8c3179;
+    --primary-color: #1b7a1e;
+    --secondary-color: #58a12c;
+    --text-color: #0e3e10;
+    --bg-color: #d1ffc2;
+    --shadow-color: rgba(0, 120, 0, 0.2);
+    --heading-color: #175e1b;
     --card-bg-color: #ffffff;
-    --card-border-color: #A5D6A7;
-    --gallery-frame-border: #66BB6A;
-    --gallery-frame-border-light: #A5D6A7;
-    --glow-color: rgba(76, 175, 80, 0.61);
+    --card-border-color: #7ac67d;
+    --gallery-frame-border: #45a049;
+    --gallery-frame-border-light: #7ac67d;
+    --glow-color: rgba(27, 122, 30, 0.61);
 }
 
 /* Spring Dark */
 [data-theme="spring-dark"] {
-    --header-color: #81c7846c;
-    --primary-color: #81C784;
-    --secondary-color: #388E3C;
-    --text-color: #E8F5E9;
-    --bg-color: #1B5E20;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-    --heading-color: #A5D6A7;
-    --card-bg-color: #2E7D32;
-    --card-border-color: #66BB6A;
-    --gallery-frame-border: #388E3C;
-    --gallery-frame-border-light: #81C784;
-    --glow-color: rgba(76, 175, 80, 0.58);
+    --header-color: #5cb16285;
+    --primary-color: #5cb162;
+    --secondary-color: #0d590f;
+    --text-color: #e8fff0;
+    --bg-color: #082609;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #7ac67d;
+    --card-bg-color: #175e1b;
+    --card-border-color: #45a049;
+    --gallery-frame-border: #1b7a1e;
+    --gallery-frame-border-light: #5cb162;
+    --glow-color: rgba(27, 122, 30, 0.58);
 }
 
 
@@ -148,35 +148,36 @@
 /* Summer */
 /* Summer Light */
 [data-theme="summer-light"] {
-    --header-color: #ffa82671;
-    --primary-color: #FFA726;
-    --secondary-color: #FFCC80;
-    --text-color: #E65100;
-    --bg-color: #FFF8E1;
-    --shadow-color: rgba(255, 170, 70, 0.1);
-    --heading-color: #FB8C00;
+    --header-color: #ff8c008c;
+    --primary-color: #e67700;
+    --secondary-color: #ffb84d;
+    --text-color: #803300;
+    --bg-color: #fff3d1;
+    --shadow-color: rgba(230, 136, 0, 0.2);
+    --heading-color: #cc6a00;
     --card-bg-color: #ffffff;
-    --card-border-color: #FFB74D;
-    --gallery-frame-border: #FF9800;
-    --gallery-frame-border-light: #FFCC80;
-    --glow-color: rgba(255, 165, 0, 0.61);
+    --card-border-color: #ffa31a;
+    --gallery-frame-border: #e67700;
+    --gallery-frame-border-light: #ffb84d;
+    --glow-color: rgba(230, 119, 0, 0.61);
 }
 
 /* Summer Dark */
 [data-theme="summer-dark"] {
-    --header-color: #ffb84d6e;
-    --primary-color: #FFB74D;
-    --secondary-color: #FF9800;
-    --text-color: #FFF3E0;
-    --bg-color: #E65100;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-    --heading-color: #FFCC80;
-    --card-bg-color: #FB8C00;
-    --card-border-color: #FFA726;
-    --gallery-frame-border: #FFB74D;
-    --gallery-frame-border-light: #FFCC80;
-    --glow-color: rgba(255, 145, 0, 0.58);
+    --header-color: #ffa31a85;
+    --primary-color: #ffa31a;
+    --secondary-color: #e67700;
+    --text-color: #fff3d1;
+    --bg-color: #803300;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #ffb84d;
+    --card-bg-color: #cc6a00;
+    --card-border-color: #e67700;
+    --gallery-frame-border: #ffa31a;
+    --gallery-frame-border-light: #ffb84d;
+    --glow-color: rgba(230, 119, 0, 0.58);
 }
+
 
 
 .sun-ray {
@@ -210,34 +211,34 @@
 /* Monsoon */
 /* Monsoon Light */
 [data-theme="monsoon-light"] {
-    --header-color: #95d9fd6c;
-    --primary-color: #0288D1;
-    --secondary-color: #03A9F4;
-    --text-color: #01579B;
-    --bg-color: #B3E5FC;
-    --shadow-color: rgba(0, 136, 209, 0.1);
-    --heading-color: #0277BD;
+    --header-color: #0070c085;
+    --primary-color: #0070c0;
+    --secondary-color: #0099ff;
+    --text-color: #003d66;
+    --bg-color: #c2e8ff;
+    --shadow-color: rgba(0, 112, 192, 0.2);
+    --heading-color: #0060a3;
     --card-bg-color: #ffffff;
-    --card-border-color: #81D4FA;
-    --gallery-frame-border: #4FC3F7;
-    --gallery-frame-border-light: #81D4FA;
-    --glow-color: rgba(0, 136, 209, 0.61);
+    --card-border-color: #66c2ff;
+    --gallery-frame-border: #0099ff;
+    --gallery-frame-border-light: #66c2ff;
+    --glow-color: rgba(0, 112, 192, 0.61);
 }
 
 /* Monsoon Dark */
 [data-theme="monsoon-dark"] {
-    --header-color: #81d4fa6d;
-    --primary-color: #81D4FA;
-    --secondary-color: #4FC3F7;
-    --text-color: #E1F5FE;
-    --bg-color: #01579B;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-    --heading-color: #81D4FA;
-    --card-bg-color: #0277BD;
-    --card-border-color: #4FC3F7;
-    --gallery-frame-border: #03A9F4;
-    --gallery-frame-border-light: #81D4FA;
-    --glow-color: rgba(3, 169, 244, 0.58);
+    --header-color: #66c2ff85;
+    --primary-color: #66c2ff;
+    --secondary-color: #0068ae;
+    --text-color: #e6f5ff;
+    --bg-color: #002137;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #66c2ff;
+    --card-bg-color: #0080db;
+    --card-border-color: #0099ff;
+    --gallery-frame-border: #0099ff;
+    --gallery-frame-border-light: #66c2ff;
+    --glow-color: rgba(0, 153, 255, 0.58);
 }
 
 
@@ -272,34 +273,34 @@
 /* Autumn */
 /* Autumn Light */
 [data-theme="autumn-light"] {
-    --header-color: #ff6f437d;
-    --primary-color: #FF7043;
-    --secondary-color: #FF8A65;
-    --text-color: #BF360C;
-    --bg-color: #FFE4B5;
-    --shadow-color: rgba(255, 112, 67, 0.1);
-    --heading-color: #D84315;
+    --header-color: #e64a198c;
+    --primary-color: #e64a19;
+    --secondary-color: #ff7043;
+    --text-color: #2f0c00;
+    --bg-color: #ffd9cc;
+    --shadow-color: rgba(230, 74, 25, 0.2);
+    --heading-color: #bf3d0d;
     --card-bg-color: #ffffff;
-    --card-border-color: #FFCCBC;
-    --gallery-frame-border: #FF7043;
-    --gallery-frame-border-light: #FF8A65;
-    --glow-color: rgba(255, 112, 67, 0.61);
+    --card-border-color: #ffab91;
+    --gallery-frame-border: #e64a19;
+    --gallery-frame-border-light: #ff7043;
+    --glow-color: rgba(230, 74, 25, 0.61);
 }
 
 /* Autumn Dark */
 [data-theme="autumn-dark"] {
-    --header-color: #ff89657d;
-    --primary-color: #FF8A65;
-    --secondary-color: #D84315;
-    --text-color: #FBE9E7;
-    --bg-color: #BF360C;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-    --heading-color: #FF7043;
-    --card-bg-color: #D84315;
-    --card-border-color: #FF7043;
-    --gallery-frame-border: #FF8A65;
-    --gallery-frame-border-light: #FFCCBC;
-    --glow-color: rgba(255, 102, 50, 0.58);
+    --header-color: #ff70438c;
+    --primary-color: #ff7043;
+    --secondary-color: #6a1c00;
+    --text-color: #fff0eb;
+    --bg-color: #2d0e04;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #ff5722;
+    --card-bg-color: #842806;
+    --card-border-color: #e64a19;
+    --gallery-frame-border: #ff7043;
+    --gallery-frame-border-light: #ffab91;
+    --glow-color: rgba(230, 74, 25, 0.58);
 }
 
 
@@ -310,18 +311,27 @@
     background: linear-gradient(135deg, #d98c3b 20%, #8b4513 80%);
     border-radius: 0 35px;
     animation: fallLeaves 8s linear infinite;
+    animation-delay: var(--delay, 0s);
+    will-change: transform, opacity;
   }
+
+  /* Optimize for performance */
+.leaf {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform: translateZ(0);
+}
 
   
   
   @keyframes fallLeaves {
   0% {
-    transform: translateX(0) translateY(-100px) rotate(0deg);
+    transform: translateX(0) translateY(-200px) rotate(0deg);
     opacity: 0.2;
   }
 
 25% {
-    transform: translateX(50px) translateY(-50px) rotate(90deg);
+    transform: translateX(5px) translateY(-100px) rotate(90deg);
     opacity: 1;
   }
 
@@ -330,13 +340,13 @@
     opacity: 1;
   }
 75% {
-    transform: translateX(-50px) translateY(50px) rotate(90deg);
+    transform: translateX(-5px) translateY(100px) rotate(90deg);
     opacity: 1;
   }
 
   100% {
-    transform: translateX(0) translateY(100px) rotate(0deg);
-    opacity: 0.2;
+    transform: translateX(0) translateY(200px) rotate(0deg);
+    opacity: 0.3;
   }
 }
 
@@ -351,34 +361,34 @@
 /* Winter */
 /* Winter Light */
 [data-theme="winter-light"] {
-    --header-color: #0289d185;
-    --primary-color: #0288D1;
-    --secondary-color: #81d4fa63;
-    --text-color: #01579B;
-    --bg-color: #E0F7FA;
-    --shadow-color: rgba(2, 136, 209, 0.1);
-    --heading-color: #0277BD;
+    --header-color: #0070c08c;
+    --primary-color: #0070c0;
+    --secondary-color: #66c2ff;
+    --text-color: #003d66;
+    --bg-color: #e6f5ff;
+    --shadow-color: rgba(0, 112, 192, 0.2);
+    --heading-color: #0060a3;
     --card-bg-color: #ffffff;
-    --card-border-color: #B3E5FC;
-    --gallery-frame-border: #4FC3F7;
-    --gallery-frame-border-light: #B3E5FC;
-    --glow-color: rgba(2, 136, 209, 0.61);
+    --card-border-color: #99d6ff;
+    --gallery-frame-border: #0099ff;
+    --gallery-frame-border-light: #99d6ff;
+    --glow-color: rgba(0, 112, 192, 0.61);
 }
 
 /* Winter Dark */
 [data-theme="winter-dark"] {
-    --header-color: #007ab38d;
-    --primary-color: #81D4FA;
-    --secondary-color: #4FC3F7;
-    --text-color: #E1F5FE;
-    --bg-color: #01579B;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-    --heading-color: #81D4FA;
-    --card-bg-color: #0277BD;
-    --card-border-color: #4FC3F7;
-    --gallery-frame-border: #03A9F4;
-    --gallery-frame-border-light: #81D4FA;
-    --glow-color: rgba(3, 169, 244, 0.58);
+    --header-color: #0099ff8c;
+    --primary-color: #66c2ff;
+    --secondary-color: #0099ff;
+    --text-color: #e6f5ff;
+    --bg-color: #003d66;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #66c2ff;
+    --card-bg-color: #0060a3;
+    --card-border-color: #0099ff;
+    --gallery-frame-border: #0099ff;
+    --gallery-frame-border-light: #66c2ff;
+    --glow-color: rgba(0, 153, 255, 0.58);
 }
 
 
@@ -718,34 +728,34 @@
 /* Diwali */
 /* Diwali Light */
 [data-theme="diwali-light"] {
-    --header-color: #ffa20076;
-    --primary-color: #FF8F00;
-    --secondary-color: #FFC107;
-    --text-color: #E65100;
-    --bg-color: #FFFDE7;
-    --shadow-color: rgba(255, 143, 0, 0.1);
-    --heading-color: #FFA000;
+    --header-color: #ffa0008c;
+    --primary-color: #ff6f00;
+    --secondary-color: #ffab00;
+    --text-color: #802d00;
+    --bg-color: #fff8e1;
+    --shadow-color: rgba(255, 111, 0, 0.2);
+    --heading-color: #ff8f00;
     --card-bg-color: #ffffff;
-    --card-border-color: #FFD54F;
-    --gallery-frame-border: #FF8F00;
-    --gallery-frame-border-light: #FFC107;
-    --glow-color: rgba(255, 143, 0, 0.61);
+    --card-border-color: #ffd54f;
+    --gallery-frame-border: #ff6f00;
+    --gallery-frame-border-light: #ffab00;
+    --glow-color: rgba(255, 111, 0, 0.61);
 }
 
 /* Diwali Dark */
 [data-theme="diwali-dark"] {
-    --header-color: #ff910087;
-    --primary-color: #FFA000;
-    --secondary-color: #FF8F00;
-    --text-color: #FFF3E0;
-    --bg-color: #E65100;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-    --heading-color: #FFC107;
-    --card-bg-color: #FF6F00;
-    --card-border-color: #FF8F00;
-    --gallery-frame-border: #FFC107;
-    --gallery-frame-border-light: #FFD54F;
-    --glow-color: rgba(255, 145, 0, 0.58);
+    --header-color: #ffab008c;
+    --primary-color: #ffc107;
+    --secondary-color: #b26500;
+    --text-color: #fff8e1;
+    --bg-color: #3a1400;
+    --shadow-color: rgba(255, 255, 255, 0.2);
+    --heading-color: #ffab00;
+    --card-bg-color: #ff6f00;
+    --card-border-color: #ff8f00;
+    --gallery-frame-border: #ffab00;
+    --gallery-frame-border-light: #ffd54f;
+    --glow-color: rgba(255, 171, 0, 0.58);
 }
 
 

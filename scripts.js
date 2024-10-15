@@ -347,28 +347,53 @@ function addAnimationsForTheme(theme) {
     animationContainer.innerHTML = ''; // Clear any previous animations
 
     function createSideAnimation(className, count, side) {
-        const spacing = window.innerHeight / count; // Ensure elements are spaced out vertically
+        const containerHeight = window.innerHeight;
+        const containerWidth = window.innerWidth;
+        const spacing = containerHeight / count;
+        const sideWidth = containerWidth * 0.2; // Use 30% of the container width for side elements
+        
         for (let i = 0; i < count; i++) {
             const animationElement = document.createElement('div');
             animationElement.classList.add(className);
-
-            // Set the position on the left or right side with slight random adjustments
+    
+            // Calculate horizontal position with bias towards center
+            let offsetX;
             if (side === 'left') {
-                const offsetX = Math.random() * 350; // Random offset to move it slightly right from the edge
-                animationElement.style.left = `${offsetX}px`; // Slight adjustment from the left edge
+                offsetX = Math.pow(Math.random(), 2) * sideWidth;
+                animationElement.style.left = `${offsetX}px`;
             } else if (side === 'right') {
-                const offsetX = Math.random() * 350; // Random offset to move it slightly left from the edge
-                animationElement.style.right = `${offsetX}px`; // Slight adjustment from the right edge
+                offsetX = containerWidth - (Math.pow(Math.random(), 2) * sideWidth);
+                animationElement.style.right = `${containerWidth - offsetX}px`;
             }
-
-            // Spacing the elements vertically, with some slight variation
-            const baseY = i * spacing; // Base Y position spaced evenly
-            const offsetY = Math.random() * (spacing / 2); // Add random vertical variation within half of the spacing
-            animationElement.style.top = `${baseY + offsetY}px`;
-
+    
+            // Vertical positioning with slight variation
+            const baseY = i * spacing;
+            const offsetY = (Math.random() - 0.5) * (spacing / 2);
+            animationElement.style.top = `${Math.max(0, Math.min(containerHeight - 20, baseY + offsetY))}px`;
+    
+            // Add animation delay
+            const delay = Math.random() * 5; // Random delay between 0 and 5 seconds
+            animationElement.style.animationDelay = `${delay}s`;
+    
             animationContainer.appendChild(animationElement);
         }
     }
+
+    // Call this function after creating the leaves
+    function resetLeafAnimations() {
+        setTimeout(() => {
+            const leaves = document.querySelectorAll('.leaf');
+            leaves.forEach(leaf => {
+                leaf.style.animation = 'none';
+                leaf.offsetHeight; // Force a reflow
+                leaf.style.animation = null;
+            });
+        });
+    }
+
+// Call resetLeafAnimations on window load and resize
+window.addEventListener('load', resetLeafAnimations);
+window.addEventListener('resize', resetLeafAnimations);
 
     function createDhunuchiWithSmoke() {
         const animationContainer = document.querySelector('.theme-animations');
@@ -476,7 +501,8 @@ function addAnimationsForTheme(theme) {
         createSideAnimation('raindrop', 20, 'right'); // 20 raindrops on the right
     } else if (theme.includes('autumn')) {
         createSideAnimation('leaf', 10, 'left'); // 15 leaves on the left
-        createSideAnimation('leaf', 10, 'right'); // 15 leaves on the right
+        createSideAnimation('leaf', 8, 'right'); // 15 leaves on the right
+        resetLeafAnimations();
     } else if (theme.includes('winter')) {
         createSideAnimation('snowflake', 20, 'left'); // 20 snowflakes on the left
         createSideAnimation('snowflake', 20, 'right'); // 20 snowflakes on the right
@@ -505,4 +531,3 @@ window.addEventListener('DOMContentLoaded', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     addAnimationsForTheme(currentTheme);
 });
-
