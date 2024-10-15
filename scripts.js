@@ -1,162 +1,249 @@
-// Smooth scrolling behavior for side navigation links
-document.querySelectorAll('.side-nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+// Global variables
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+// Theme functionality
+function getCurrentSeasonOrFestival() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+
+    const festivals = {
+        'durga-puja': { start: new Date(currentDate.getFullYear(), 9, 3), end: new Date(currentDate.getFullYear(), 9, 14) },
+        'diwali': { start: new Date(currentDate.getFullYear(), 9, 30), end: new Date(currentDate.getFullYear(), 10, 3) }
+    };
+
+    for (const [festival, { start, end }] of Object.entries(festivals)) {
+        if (currentDate >= start && currentDate <= end) return festival;
+    }
+
+    const seasons = [
+        { name: 'spring', months: [2, 3] },
+        { name: 'summer', months: [4, 5, 6] },
+        { name: 'monsoon', months: [7, 8] },
+        { name: 'autumn', months: [9, 10] },
+        { name: 'winter', months: [11, 0, 1] }
+    ];
+
+    return seasons.find(season => season.months.includes(currentMonth))?.name || 'default';
+}
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    toggleSwitch.checked = theme.includes('dark');
+    addAnimationsForTheme(theme);
+}
+
+function switchTheme(e) {
+    const currentSeasonOrFestival = getCurrentSeasonOrFestival();
+    setTheme(e.target.checked ? `${currentSeasonOrFestival}-dark` : `${currentSeasonOrFestival}-light`);
+}
+
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(`${getCurrentSeasonOrFestival()}-${systemDarkMode ? 'dark' : 'light'}`);
+    }
+}
+
+// Theme-based animations
+function addAnimationsForTheme(theme) {
+    const animationContainer = document.querySelector('.theme-animations');
+    if (!animationContainer) return;
+
+    animationContainer.innerHTML = '';
+
+    function createSideAnimation(className, count, side) {
+        const containerHeight = window.innerHeight;
+        const containerWidth = window.innerWidth;
+        const spacing = containerHeight / count;
+        const sideWidth = containerWidth * 0.2; // 20% of the screen width
+        
+        for (let i = 0; i < count; i++) {
+            const animationElement = document.createElement('div');
+            animationElement.classList.add(className);
+    
+            // Calculate horizontal position
+            let offsetX;
+            if (side === 'left') {
+                offsetX = Math.random() * sideWidth;
+            } else { // right side
+                offsetX = containerWidth - (Math.random() * sideWidth) -10;
+            }
+            
+            animationElement.style.left = `${offsetX}px`;
+    
+            // Calculate vertical position
+            const baseY = i * spacing;
+            const offsetY = (Math.random() - 0.5) * spacing; // Allow for some overlap
+            animationElement.style.top = `${Math.max(0, Math.min(containerHeight - 20, baseY + offsetY))}px`;
+    
+            // Random animation delay
+            animationElement.style.animationDelay = `${Math.random() * 5}s`;
+    
+            animationContainer.appendChild(animationElement);
+        }
+    }
+
+    function resetLeafAnimations() {
+        setTimeout(() => {
+            document.querySelectorAll('.leaf').forEach(leaf => {
+                leaf.style.animation = 'none';
+                leaf.offsetHeight;
+                leaf.style.animation = null;
+            });
+        });
+    }
+
+    function createDhunuchiWithSmoke() {
+        ['left', 'right'].forEach(side => {
+            const container = document.createElement('div');
+            container.classList.add('dhunuchi-container', side);
+            
+            const holder = document.createElement('div');
+            holder.classList.add('dhunuchi-holder', side);
+            
+            const stand = document.createElement('div');
+            stand.classList.add('dhunuchi-stand', side);
+    
+            container.appendChild(holder);
+            container.appendChild(stand);
+    
+            for (let i = 0; i < 20; i++) {
+                const smoke = document.createElement('div');
+                smoke.classList.add('dhunuchi-smoke');
+                smoke.style.position = 'absolute';
+                smoke.style.top = '-50px';
+                smoke.style.left = '50%';
+                smoke.style.transform = 'translateX(-50%)';
+                smoke.style.animationDelay = `${Math.random() * 10}s`;
+    
+                holder.appendChild(smoke);
+            }
+    
+            animationContainer.appendChild(container);
+        });
+    }
+    
+    function addToranaWithMangoLeaves() {
+        const body = document.querySelector('body');
+    
+        const toranaString = document.createElement('div');
+        toranaString.classList.add('torana-string');
+        body.appendChild(toranaString);
+    
+        for (let i = 0; i < 10; i++) {
+            const mangoLeaf = document.createElement('div');
+            mangoLeaf.classList.add('mango-leaf');
+            mangoLeaf.style.left = `${(i * 10) + 5}%`;
+            mangoLeaf.style.top = '10px';
+            mangoLeaf.style.animationDelay = `${i * 0.2}s`;
+            body.appendChild(mangoLeaf);
+        }
+    }
+
+    const themeAnimations = {
+        'spring': () => {
+            createSideAnimation('petal', 10, 'left');
+            createSideAnimation('petal', 10, 'right');
+        },
+        'summer': () => {
+            const sunRay = document.createElement('div');
+            sunRay.classList.add('sun-ray');
+            sunRay.style.left = '50%';
+            animationContainer.appendChild(sunRay);
+        },
+        'monsoon': () => {
+            createSideAnimation('raindrop', 20, 'left');
+            createSideAnimation('raindrop', 20, 'right');
+        },
+        'autumn': () => {
+            createSideAnimation('leaf', 9, 'left');
+            createSideAnimation('leaf', 7, 'right');
+            resetLeafAnimations();
+        },
+        'winter': () => {
+            createSideAnimation('snowflake', 20, 'left');
+            createSideAnimation('snowflake', 20, 'right');
+        },
+        'diwali': () => {
+            createSideAnimation('firework', 10, 'left');
+            createSideAnimation('firework', 10, 'right');
+        },
+        'durga-puja': () => {
+            createDhunuchiWithSmoke();
+            addToranaWithMangoLeaves();
+        }
+    };
+
+    const seasonOrFestival = theme.split('-')[0];
+    if (themeAnimations[seasonOrFestival]) {
+        themeAnimations[seasonOrFestival]();
+    }
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    initializeTheme();
+
+    // Smooth scrolling for side navigation links
+    document.querySelectorAll('.side-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
+    // Loading screen functionality
     const img = document.querySelector('.profile-picture img');
     const loadingScreen = document.querySelector('.loading-screen');
   
     function hideLoadingScreen() {
-      loadingScreen.style.opacity = '0';
-      setTimeout(() => {
-        loadingScreen.style.display = 'none';
-      }, 4000); // Matches the transition duration in CSS
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 4000);
     }
   
-    if (img.complete) {
-      hideLoadingScreen();
-    } else {
-      img.onload = hideLoadingScreen;
-    }
-  
-    // Fallback in case the image fails to load
+    img.complete ? hideLoadingScreen() : img.onload = hideLoadingScreen;
     img.onerror = hideLoadingScreen;
   
-    // Show loading screen immediately
     loadingScreen.style.opacity = '1';
     loadingScreen.style.display = 'flex';
-  });
 
-function toggleNav() {
-    const sideNav = document.getElementById("sideNav");
-    const currentWidth = window.getComputedStyle(sideNav).width;
+    // Gallery functionality
+    const galleryWall = document.querySelector('.gallery-wall');
+    const frames = document.querySelectorAll('.gallery-frame');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+  
+    prevBtn.addEventListener('click', () => {
+        galleryWall.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+  
+    nextBtn.addEventListener('click', () => {
+        galleryWall.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  
+    frames.forEach(frame => {
+        frame.addEventListener('click', () => {
+            frame.classList.toggle('expanded');
+        });
+    });
 
-    if (currentWidth !== "0px") {
-        // Close the navigation
-        sideNav.style.width = "0";
-    } else {
-        // Open the navigation
-        const screenWidth = window.innerWidth;
-        let navWidth;
-
-        if (screenWidth <= 480) {
-            navWidth = "50%";  // For mobile phones
-        } else if (screenWidth <= 768) {
-            navWidth = "40%";  // For tablets
-        } else if (screenWidth <= 1024) {
-            navWidth = "30%";  // For small desktops
-        } else {
-            navWidth = "300px";  // For larger screens
-        }
-
-        sideNav.style.width = navWidth;
-    }
-}
-
-// Add event listener for window resize
-window.addEventListener('resize', function() {
-    const sideNav = document.getElementById("sideNav");
-    const currentWidth = window.getComputedStyle(sideNav).width;
-
-    // Only adjust if the nav is currently open
-    if (currentWidth !== "0px") {
-        const screenWidth = window.innerWidth;
-        let navWidth;
-
-        if (screenWidth <= 480) {
-            navWidth = "40%";
-        } else if (screenWidth <= 768) {
-            navWidth = "30%";
-        } else if (screenWidth <= 1024) {
-            navWidth = "20%";
-        } else {
-            navWidth = "300px";
-        }
-
-        sideNav.style.width = navWidth;
-    }
+    // Resume link animation
+    setTimeout(function() {
+        document.querySelector('.resume-link').classList.add('peek');
+    }, 3000);
 });
 
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-const currentTheme = localStorage.getItem('theme');
+toggleSwitch.addEventListener('change', switchTheme);
 
-// Function to determine the current season or festival
-function getCurrentSeasonOrFestival() {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentDay = currentDate.getDate();
-
-    // Festival date ranges (adjust these dates as needed)
-    const durgaPujaStart = new Date(currentDate.getFullYear(), 9, 3); // October 10
-    const durgaPujaEnd = new Date(currentDate.getFullYear(), 9, 14);   // October 14
-    const diwaliStart = new Date(currentDate.getFullYear(), 9, 30);    // November 1
-    const diwaliEnd = new Date(currentDate.getFullYear(), 10, 3);      // November 5
-
-    // Check for festivals first
-    if (currentDate >= durgaPujaStart && currentDate <= durgaPujaEnd) {
-        return 'durga-puja';
-    } else if (currentDate >= diwaliStart && currentDate <= diwaliEnd) {
-        return 'diwali';
-    } 
-
-    // Otherwise, check for seasons
-    if (currentMonth >= 2 && currentMonth <= 3) {
-        return 'spring';
-    } else if (currentMonth >= 4 && currentMonth <= 6) {
-        return 'summer';
-    } else if (currentMonth >= 7 && currentMonth <= 8) {
-        return 'monsoon';
-    } else if (currentMonth >= 9 && currentMonth <= 10) {
-        return 'autumn';
-    } else {
-        return 'winter';
-    }
-}
-
-// Function to set the theme, including seasonal or festival themes
-function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-
-    // Ensure the toggle switch reflects the correct state for dark/light mode
-    toggleSwitch.checked = theme.includes('dark');
-}
-
-// Function to handle switching between light and dark modes for the current season or festival
-function switchTheme(e) {
-    const currentSeasonOrFestival = getCurrentSeasonOrFestival();
-
-    if (e.target.checked) {
-        setTheme(`${currentSeasonOrFestival}-dark`);  // Apply dark version of the current theme
-    } else {
-        setTheme(`${currentSeasonOrFestival}-light`); // Apply light version of the current theme
-    }
-}
-
-// Check for saved user preference or system preference, and apply the appropriate theme
-if (currentTheme) {
-    setTheme(currentTheme);  // Apply saved theme from localStorage
-} else {
-    const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const defaultTheme = systemDarkMode ? `${getCurrentSeasonOrFestival()}-dark` : `${getCurrentSeasonOrFestival()}-light`;
-    setTheme(defaultTheme);
-}
-
-// Add event listener for theme switch
-toggleSwitch.addEventListener('change', switchTheme, false);
-
-// Listen for changes in system theme (light or dark)
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    const newTheme = e.matches ? `${getCurrentSeasonOrFestival()}-dark` : `${getCurrentSeasonOrFestival()}-light`;
-    setTheme(newTheme);
+    setTheme(`${getCurrentSeasonOrFestival()}-${e.matches ? 'dark' : 'light'}`);
 });
-
 
 // Scroll animations for sections
 const sections = document.querySelectorAll('section');
@@ -164,46 +251,65 @@ const backToTop = document.querySelector('.back-to-top');
 
 function checkScroll() {
     sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (sectionTop < windowHeight * 0.75) {
+        if (section.getBoundingClientRect().top < window.innerHeight * 0.75) {
             section.classList.add('visible');
         }
     });
 
-    if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-    } else {
-        backToTop.classList.remove('visible');
-    }
+    backToTop.classList.toggle('visible', window.pageYOffset > 300);
 }
 
 window.addEventListener('scroll', checkScroll);
 window.addEventListener('load', checkScroll);
 
-// Back to top button functionality
 backToTop.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Updated JavaScript for the achievements section
+// Toggle side navigation
+function toggleNav() {
+    const sideNav = document.getElementById("sideNav");
+    const currentWidth = window.getComputedStyle(sideNav).width;
+
+    if (currentWidth !== "0px") {
+        sideNav.style.width = "0";
+    } else {
+        const screenWidth = window.innerWidth;
+        let navWidth = screenWidth <= 480 ? "50%" :
+                       screenWidth <= 768 ? "40%" :
+                       screenWidth <= 1024 ? "30%" : "300px";
+        sideNav.style.width = navWidth;
+    }
+}
+
+// Adjust side navigation on window resize
+window.addEventListener('resize', function() {
+    const sideNav = document.getElementById("sideNav");
+    const currentWidth = window.getComputedStyle(sideNav).width;
+
+    if (currentWidth !== "0px") {
+        const screenWidth = window.innerWidth;
+        let navWidth = screenWidth <= 480 ? "40%" :
+                       screenWidth <= 768 ? "30%" :
+                       screenWidth <= 1024 ? "20%" : "300px";
+        sideNav.style.width = navWidth;
+    }
+});
+
+// Achievement carousel functionality
 const achievementStack = document.querySelector('.achievement-stack');
 const achievementCards = document.querySelectorAll('.achievement-card');
 const prevButton = document.getElementById('prevAchievement');
 const nextButton = document.getElementById('nextAchievement');
 let currentIndex = 0;
 let autoSlideInterval;
-let autoSlideDelay = 5000; // 5 seconds between auto-scrolls
-let manualPauseTime = 10000; // 10 seconds pause after manual navigation
+const autoSlideDelay = 5000;
+const manualPauseTime = 10000;
 
 function updateCards() {
     achievementCards.forEach((card, index) => {
-        card.classList.remove('active');
-        if (index === currentIndex) {
-            card.classList.add('active');
-        }
+        card.classList.toggle('active', index === currentIndex);
     });
     achievementStack.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
@@ -243,46 +349,37 @@ let touchEndX = 0;
 
 achievementStack.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
-}, false);
+});
 
 achievementStack.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
-}, false);
+});
 
 function handleSwipe() {
     if (touchEndX < touchStartX) {
         nextAchievement();
-    }
-    if (touchEndX > touchStartX) {
+    } else if (touchEndX > touchStartX) {
         prevAchievement();
     }
     resetAutoScroll();
 }
 
-// Pause auto-scroll when hovering over the achievement container
 const achievementContainer = document.querySelector('.achievement-container');
 achievementContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
 achievementContainer.addEventListener('mouseleave', startAutoScroll);
 
-// Initialize
 updateCards();
 startAutoScroll();
 
 // Academic card flip functionality
 document.querySelectorAll('.academic-card-flip').forEach(card => {
-    // Function to toggle flip
     const toggleFlip = () => {
         card.querySelector('.academic-card-inner').classList.toggle('is-flipped');
     };
-
-    // Event listener for desktop (click event)
     card.addEventListener('click', toggleFlip);
-
-     // Event listener for mobile (touchend event)
-     card.addEventListener('touchend', toggleFlip);
+    card.addEventListener('touchend', toggleFlip);
 });
-
 
 // Internship card functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -293,16 +390,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const closeCertificateBtn = card.querySelector('.close-certificate');
         
         function revealCertificate(e) {
-            e.preventDefault(); // Prevent default behavior
+            e.preventDefault();
             card.classList.add('animating');
             setTimeout(() => {
                 card.classList.remove('animating');
                 card.classList.add('revealed');
-            }, 2000); // Duration of the swingingAndPeeling animation
+            }, 2000);
         }
         
         function closeCertificate(e) {
-            e.preventDefault(); // Prevent default behavior
+            e.preventDefault();
             card.classList.remove('revealed');
         }
         
@@ -312,222 +409,4 @@ document.addEventListener('DOMContentLoaded', function() {
         closeCertificateBtn.addEventListener('click', closeCertificate);
         closeCertificateBtn.addEventListener('touchstart', closeCertificate);
     });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const galleryWall = document.querySelector('.gallery-wall');
-    const frames = document.querySelectorAll('.gallery-frame');
-    
-  
-    prevBtn.addEventListener('click', () => {
-      galleryWall.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-  
-    nextBtn.addEventListener('click', () => {
-      galleryWall.scrollBy({ left: 300, behavior: 'smooth' });
-    });
-  
-    frames.forEach(frame => {
-        frame.addEventListener('click', () => {
-          frame.classList.toggle('expanded');
-        });
-      });      
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        document.querySelector('.resume-link').classList.add('peek');
-    }, 3000); // 3000 milliseconds = 3 seconds
-});
-
-function addAnimationsForTheme(theme) {
-    const animationContainer = document.querySelector('.theme-animations');
-    if (!animationContainer) return; // Exit if container doesn't exist
-
-    animationContainer.innerHTML = ''; // Clear any previous animations
-
-    function createSideAnimation(className, count, side) {
-        const containerHeight = window.innerHeight;
-        const containerWidth = window.innerWidth;
-        const spacing = containerHeight / count;
-        const sideWidth = containerWidth * 0.2; // Use 30% of the container width for side elements
-        
-        for (let i = 0; i < count; i++) {
-            const animationElement = document.createElement('div');
-            animationElement.classList.add(className);
-    
-            // Calculate horizontal position with bias towards center
-            let offsetX;
-            if (side === 'left') {
-                offsetX = Math.pow(Math.random(), 2) * sideWidth;
-                animationElement.style.left = `${offsetX}px`;
-            } else if (side === 'right') {
-                offsetX = containerWidth - (Math.pow(Math.random(), 2) * sideWidth);
-                animationElement.style.right = `${containerWidth - offsetX}px`;
-            }
-    
-            // Vertical positioning with slight variation
-            const baseY = i * spacing;
-            const offsetY = (Math.random() - 0.5) * (spacing / 2);
-            animationElement.style.top = `${Math.max(0, Math.min(containerHeight - 20, baseY + offsetY))}px`;
-    
-            // Add animation delay
-            const delay = Math.random() * 5; // Random delay between 0 and 5 seconds
-            animationElement.style.animationDelay = `${delay}s`;
-    
-            animationContainer.appendChild(animationElement);
-        }
-    }
-
-    // Call this function after creating the leaves
-    function resetLeafAnimations() {
-        setTimeout(() => {
-            const leaves = document.querySelectorAll('.leaf');
-            leaves.forEach(leaf => {
-                leaf.style.animation = 'none';
-                leaf.offsetHeight; // Force a reflow
-                leaf.style.animation = null;
-            });
-        });
-    }
-
-// Call resetLeafAnimations on window load and resize
-window.addEventListener('load', resetLeafAnimations);
-window.addEventListener('resize', resetLeafAnimations);
-
-    function createDhunuchiWithSmoke() {
-        const animationContainer = document.querySelector('.theme-animations');
-    
-        // Create left and right Dhunuchi containers
-        const dhunuchiLeftContainer = document.createElement('div');
-        dhunuchiLeftContainer.classList.add('dhunuchi-container', 'left');
-        
-        const dhunuchiRightContainer = document.createElement('div');
-        dhunuchiRightContainer.classList.add('dhunuchi-container', 'right');
-    
-        // Create left Dhunuchi holder and stand
-        const dhunuchiHolderLeft = document.createElement('div');
-        dhunuchiHolderLeft.classList.add('dhunuchi-holder', 'left');
-        
-        const dhunuchiStandLeft = document.createElement('div');
-        dhunuchiStandLeft.classList.add('dhunuchi-stand', 'left');
-    
-        // Create right Dhunuchi holder and stand
-        const dhunuchiHolderRight = document.createElement('div');
-        dhunuchiHolderRight.classList.add('dhunuchi-holder', 'right');
-        
-        const dhunuchiStandRight = document.createElement('div');
-        dhunuchiStandRight.classList.add('dhunuchi-stand', 'right');
-    
-        // Append holders and stands to containers
-        dhunuchiLeftContainer.appendChild(dhunuchiHolderLeft);
-        dhunuchiLeftContainer.appendChild(dhunuchiStandLeft);
-        
-        dhunuchiRightContainer.appendChild(dhunuchiHolderRight);
-        dhunuchiRightContainer.appendChild(dhunuchiStandRight);
-    
-        // Create multiple smoke elements for both holders
-        for (let i = 0; i < 20; i++) {
-            const smokeLeft = document.createElement('div');
-            smokeLeft.classList.add('dhunuchi-smoke');
-            
-            // Position smoke inside the left dhunuchi holder
-            smokeLeft.style.position = 'absolute';
-            smokeLeft.style.top = '-50px'; // Adjust the smoke position above the holder
-            smokeLeft.style.left = '50%';  // Center smoke horizontally inside holder
-            smokeLeft.style.transform = 'translateX(-50%)';
-            smokeLeft.style.animationDelay = `${Math.random() * 10}s`;
-    
-            const smokeRight = document.createElement('div');
-            smokeRight.classList.add('dhunuchi-smoke');
-            
-            // Position smoke inside the right dhunuchi holder
-            smokeRight.style.position = 'absolute';
-            smokeRight.style.top = '-50px'; // Adjust the smoke position above the holder
-            smokeRight.style.left = '50%';  // Center smoke horizontally inside holder
-            smokeRight.style.transform = 'translateX(-50%)';
-            smokeRight.style.animationDelay = `${Math.random() * 10}s`;
-    
-            // Append smoke to the respective holders
-            dhunuchiHolderLeft.appendChild(smokeLeft);
-            dhunuchiHolderRight.appendChild(smokeRight);
-        }
-    
-        // Append both dhunuchi containers to the animation container
-        animationContainer.appendChild(dhunuchiLeftContainer);
-        animationContainer.appendChild(dhunuchiRightContainer);
-    }
-    
-    function addToranaWithMangoLeaves() {
-        const body = document.querySelector('body');
-    
-        // Create Torana (String)
-        const toranaString = document.createElement('div');
-        toranaString.classList.add('torana-string');
-        body.appendChild(toranaString);
-    
-        // Create mango leaves and attach to the torana
-        for (let i = 0; i < 10; i++) {
-            const mangoLeaf = document.createElement('div');
-            mangoLeaf.classList.add('mango-leaf');
-            
-            const position = (i * 10) + 5;
-            mangoLeaf.style.left = `${position}%`;
-            mangoLeaf.style.top = '10px';
-
-            // Add slight delay to each leaf's animation for a more natural look
-            mangoLeaf.style.animationDelay = `${i * 0.2}s`;
-
-            body.appendChild(mangoLeaf);
-        }
-    }
-    
-    
-    
-    
-
-
-    // Add animations based on the theme
-    if (theme.includes('spring')) {
-        createSideAnimation('petal', 10, 'left'); // 10 petals on the left
-        createSideAnimation('petal', 10, 'right'); // 10 petals on the right
-    } else if (theme.includes('summer')) {
-        const sunRay = document.createElement('div');
-        sunRay.classList.add('sun-ray');
-        sunRay.style.left = '50%'; // Center sun ray
-        animationContainer.appendChild(sunRay);
-    } else if (theme.includes('monsoon')) {
-        createSideAnimation('raindrop', 20, 'left'); // 20 raindrops on the left
-        createSideAnimation('raindrop', 20, 'right'); // 20 raindrops on the right
-    } else if (theme.includes('autumn')) {
-        createSideAnimation('leaf', 10, 'left'); // 15 leaves on the left
-        createSideAnimation('leaf', 8, 'right'); // 15 leaves on the right
-        resetLeafAnimations();
-    } else if (theme.includes('winter')) {
-        createSideAnimation('snowflake', 20, 'left'); // 20 snowflakes on the left
-        createSideAnimation('snowflake', 20, 'right'); // 20 snowflakes on the right
-    } else if (theme.includes('diwali')) {
-        createSideAnimation('firework', 10, 'left'); // 10 fireworks on the left
-        createSideAnimation('firework', 10, 'right'); // 10 fireworks on the right
-    } else if (theme.includes('durga-puja')) {
-        // Call function to create dhunuchi and smoke animation for Durga Puja
-        createDhunuchiWithSmoke();
-        addToranaWithMangoLeaves();
-    }
-}
-
-// Call this function when the theme changes or on page load
-const currenttheme = document.documentElement.getAttribute('data-theme');
-addAnimationsForTheme(currenttheme);
-
-// If you're switching themes dynamically, ensure to call `addAnimationsForTheme(newTheme)` when the theme changes
-toggleSwitch.addEventListener('change', () => {
-    const newTheme = document.documentElement.getAttribute('data-theme');
-    addAnimationsForTheme(newTheme); // Update the animations
-});
-
-// If the theme is loaded based on system or local storage
-window.addEventListener('DOMContentLoaded', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    addAnimationsForTheme(currentTheme);
 });
